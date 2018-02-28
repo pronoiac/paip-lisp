@@ -1,3 +1,4 @@
+## Frontmatter
 Paradigms of 
 Artificial Intelligence 
 Programming: 
@@ -58,6 +59,7 @@ CIP
 To my family,.. 
 
 
+## Preface
 Preface 
 
 paradigm . 1 an example or pattern; esp an outstandingly clear or typical example. 
@@ -537,6 +539,7 @@ Finally, thanks to Mike Morgan and Yonie Overton for overseeing the production
 of the book and encouraging me to finish on time. 
 
 
+## Chapter 1 - Introduction to Lisp
 CHAPTER 1 
 
 Introduction to Lisp 
@@ -1974,6 +1977,7 @@ sum))
 (apply #'+ (mapcar #'* a b))) 
 
 
+## Chapter 2 - A Simple Lisp Program
 CHAPTER 2 
 
 A Simple Lisp Program 
@@ -2636,7 +2640,7 @@ Now we can use the cross-product in other ways as well:
 (A 7) (B 7) (C 7) (D 7) (E 7) (F 7) (G 7) (H 7) 
 (A 8) (B 8) (C 8) (D 8) (E 8) (F 8) (G 8) (H 8)) 
 
-
+## Chapter 3 - Overview of Lisp
 CHAPTER 3 
 
 Overview of Lisp 
@@ -5409,7 +5413,7 @@ or, with an ANSI-compliant Common Lisp, you can specify a : key
 
 Answer 3.12 (format t '^@r{'^a'^^ '(this is a test)) 
 
-
+## Chapter 4 - GPS: The General Problem Solver
 CHAPTER 
 
 4 
@@ -7352,6 +7356,7 @@ Do this for all possible e to generate all permutations,
 bag))) 
 
 
+## Chapter 5 - ELIZA: Dialog with a Machine 
 CHAPTER 5 
 
 ELIZA: Dialog with a Machine 
@@ -8494,6 +8499,7 @@ Answer 5.19 The following includes most of Weizenbaum's rules:
 (Do you feel strongly about discussing such things?)))) 
 
 
+## Chapter 6 - Building Software Tools
 CHAPTER 6 
 
 Building Software Tools 
@@ -10577,6 +10583,8 @@ successors cost-fn beam-width)
 solutions)) 
 
 
+## Chapter 7 - STUDENT: Solving Algebra Word Problems
+
 CHAPTER 7 
 
 STUDENT: Solving Algebra 
@@ -11533,6 +11541,7 @@ exp))
 (t unknown))) 
 
 
+## Chapter 8 - Symbolic Mathematics: A Simplification Program
 CHAPTER 8 
 
 Symbolic Mathematics: 
@@ -12685,6 +12694,7 @@ from being simplified away.
 and -i nf ini ty as well. 
 
 
+## Chapter 9 - Efficiency issues
 CHAPTER 9 
 
 Efficiency issues 
@@ -15194,6 +15204,7 @@ out of delayed functions, while things that may not be done at all should be mov
 inside a delay. 
 
 
+## Chapter 10 - Low-Level Efficiency Issues
 CHAPTER 10 
 
 Low-Level 
@@ -16856,6 +16867,7 @@ Ex: (flatten '((a) (b (c) d))) => (a b c d)."
 exp)))) 
 
 
+## Chapter 11 - Logic Programming
 CHAPTER 
 
 Logic Programming 
@@ -18840,6 +18852,7 @@ Yes.
 Yes. 
 
 
+## Chapter 12 - Compiling Logic Programs
 CHAPTER 12 
 
 Compiling Logic 
@@ -21151,6 +21164,7 @@ seen once, and a list of variables seen more than once."
 (t (values (cons tree seen-once) seen-more)))) 
 
 
+## Chapter 13 - Object-Oriented Programming
 CHAPTER 73 
 
 Object-Oriented 
@@ -22407,6 +22421,7 @@ stated in the text, some of the previously defined methods made the unwarranted
 assumption that probl em-states would always hold a Hst. Change these methods. 
 
 
+## Chapter 14 - Knowledge Representation and Reasoning
 CHAPTER 
 
 14 
@@ -24708,6 +24723,7 @@ Assumes that item is present exactly once."
 nlist) 
 
 
+## Chapter 15 - Symbolic Mathematics with Canonical Forms
 CHAPTER 
 
 15 
@@ -25764,6 +25780,7 @@ would be numbers. (3) Unless a policy was decided upon, the representation would
 not be canonical, since #(. 3) and #(y 3) both represent 3. 
 
 
+## Chapter 16 - Expert Systems
 CHAPTER 
 
 16 
@@ -27454,6 +27471,7 @@ Answer 16.18 Add the clause (stop (throw 'stop nil)) to the case statement
 in ask-vals and wrap a (catch 'stop ...) around the code in emycin. 
 
 
+## Chapter 17 - Line-Diagram Labeling by Constraint Satisfaction
 CHAPTER 
 
 17 
@@ -28836,6 +28854,7 @@ implement a program to allow a user to draw diagrams with a mouse. Have the
 program generate output in the form expected by construct-di agram. 
 
 
+## Chapter 18 - Search and the Game of Othello
 CHAPTER 18 
 
 Search and the 
@@ -31774,6 +31793,7 @@ names. The user might also want the ability to start the values at some number o
 than zero, or to assign specific values to some of the symbols. 
 
 
+## Chapter 19 - Introduction to Natural Language
 CHAPTER 19 
 
 Introduction to 
@@ -33194,6 +33214,7 @@ Rarely, rotatef is used with more than two arguments, (rotatef a b c) is like:
 nil) 
 
 
+## Chapter 20 - Unification Grammars
 CHAPTER 20 
 
 Unification Grammars 
@@ -34653,6 +34674,7 @@ nil readtable)
 nil readtable)))) 
 
 
+## Chapter 21 - A Grammar of English
 CHAPTER 27 
 
 A Grammar of English 
@@ -36367,6 +36389,7 @@ clause is nonrestrictive and thus belongs outside the quantifier's restriction:
 (4-wheel-drive ?x)(cost s ?x $5000)) 
 
 
+## Chapter 22 - Scheme: An Uncommon Lisp
 CHAPTER 22 
 
 Scheme: An Uncommon Lisp 
@@ -37896,6 +37919,7 @@ to optimize special variable references the way it canf uncti on special forms. 
 this approach would not interact properly with f 1 et and 1 abel s. 
 
 
+## Chapter 23 - Compiling Lisp
 CHAPTER 23 
 
 Compiling Lisp 
@@ -40338,6 +40362,8 @@ not the intended result at all. So there would be an arbitrary restriction: the 
 argument in an apply form would have to be an atom. This kind of restriction goes 
 against the grain of Scheme. 
 
+
+## Chapter 24 - ANSI Common Lisp
 CHAPTER 24 
 
 ANSI Common Lisp 
@@ -41931,6 +41957,7 @@ code, and the executable part serves to notify the lazy reader when something is
 demonstrably wrong at run time. 
 
 
+## Chapter 25 - Troubleshooting
 CHAPTER 25 
 
 Troubleshooting 
@@ -43381,7 +43408,7 @@ adds a new key/value pair to the front of the a-list.
 
 '(cdr .pair-var))))) 
 
-
+## Appendix - Obtaining the Code in this Book
 Appendix: 
 Obtaining the Code 
 in this Book 
@@ -43557,6 +43584,7 @@ XLisp cs.orst.edu Lisp interpreter
 XScheme tut.cis.ohio-state.edu Also mitscheme compiler; sbprolog 
 
 
+## Bibliography
 Bibliography 
 
 Abelson, Harold, and Gerald J. Sussman, with Juhe Sussman. (1985) Structure and 
@@ -44416,6 +44444,7 @@ Zucker, S. W. (1990) "Vision, Early." In Encyclopedia of Artificial Intelligence
 Stuart C. Shapiro. Wiley. 
 
 
+## Index
 Index 
 
 1,420 
