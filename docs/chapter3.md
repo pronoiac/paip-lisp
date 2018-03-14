@@ -1,29 +1,26 @@
 # Chapter 3 {docsify-ignore}
 <a id='page-48'></a>
 
-Overview of Lisp 
+## Overview of Lisp 
 
-No doubt about it. Common Lisp is a big language. 
-
-—Guy L. Steele, Jr. 
+> *No doubt about it. Common Lisp is a big language.* 
+>
+—Guy L. Steele, Jr.  
 Foreword to Koschman 1990 
 
-I 1 his chapter briefly covers the most important special forms and functions in Lisp. It 
+This chapter briefly covers the most important special forms and functions in Lisp. It 
 can be safely skipped or skimmed by the experienced Common Lisp programmer 
-
 but is required reading for the novice Lisp progranuner, or one who is new to the 
 Common Lisp dialect. 
 
-r. 
-
-This chapter can be used as a reference source, but the definitive reference is Steele's Common 
-Lisp the Language, 2d edition, which should be consulted whenever there is any confusion. Since 
+This chapter can be used as a reference source, but the definitive reference is Steele's *Common 
+Lisp the Language,* 2d edition, which should be consulted whenever there is any confusion. Since 
 that book is 25 times longer than this chapter, it is clear that we can only touch on the important 
 highlights here. More detailed coverage is given later in this book as each feature is used in a 
 real program. 
 
 <a id='page-49'></a>
-3.1 A Guide to Lisp Style 
+## 3.1 A Guide to Lisp Style 
 The beginning Common Lisp programmer is often overwhelmed by the number of 
 options that the language provides. In this chapter we show fourteen different ways 
 to find the length of a list. How is the programmer to choose between them? One 
@@ -37,14 +34,15 @@ follow:
 * Use the provided tools. 
 * Don't be obscure. 
 * Be consistent. 
+
 These require some explanation. 
 
 Using the most specific form possible makes it easier for your reader to understand 
-your intent. For example, the conditional special form when is more specific than i f. 
-The reader who sees a when knows to look for only one thing: the clause to consider 
-when the test is true. The reader who sees an i f can rightfully expect two clauses: 
+your intent. For example, the conditional special form when is more specific than `if`. 
+The reader who sees a `when` knows to look for only one thing: the clause to consider 
+when the test is true. The reader who sees an `if` can rightfully expect two clauses: 
 one for when the test is true, and one for when it is false. Even though it is possible 
-to use i f when there is only one clause, it is preferable to use when, because when is 
+to use `if` when there is only one clause, it is preferable to use `when`, because `when` is 
 more specific. 
 
 One important way of being specific is using abstractions. Lisp provides very 
@@ -52,274 +50,292 @@ general data structures, such as lists and arrays. These can be used to implemen
 specific data structures that your program will use, but you should not make the 
 mistake of invoking primitive functions directly. If you define a list of names: 
 
+```lisp
 (defvar *names* '((Robert E. Lee) ...)) 
+```
 
 then you should also define functions to get at the components of each name. To get 
-at Lee,use (last-name (first *names*)),not (caddar *names*). 
+at `Lee`, use `(last-name (first *names*))`, not `(caddar *names*)`. 
 
 Often the maxims are in concord. For example, if your code is trying to find an 
-element in a list, you should use f 1 nd (or maybe f 1 nd-1 f), not 1 oop or do. f i nd is 
-more specific than the general constructs 1 oop or do, it is an abstraction, it is more 
+element in a list, you should use `find` (or maybe `find-if`), not `loop` or `do`. `find` is 
+more specific than the general constructs `loop` or `do`, it is an abstraction, it is more 
 concise, it is a built-in tool, and it is simple to understand. 
 
 <a id='page-50'></a>
 
 Sometimes, however, the maxims are in confUct, and experience will tell you 
 which one to prefer. Consider the following two ways of placing a new key/value 
-pair on an association list:^ 
+pair on an association list:[TK fn1] 
 
+```lisp
 (push (cons key val) a-list) 
-(setf a-list (aeons key val a-list)) 
+(setf a-list (acons key val a-list)) 
+```
 
-The first is more concise. But the second is more specific, as it uses the aeons 
+The first is more concise. But the second is more specific, as it uses the `acons` 
 function, which is designed specifically for association lists. The decision between 
-them probably hinges on obscurity: those who find aeons to be a familiar function 
+them probably hinges on obscurity: those who find `acons` to be a familiar function 
 would prefer the second, and those who find it obscure would prefer the first. 
 
 A similar choice arises in the question of setting a variable to a value. Some prefer 
-(setq X val) because it is most specific; others use (setf . val), feeling that it is 
-more consistent to use a single form, setf, for all updating. Whichever choice you 
+`(setq x val)` because it is most specific; others use `(setf x val)`, feeling that it is 
+more consistent to use a single form, `setf`, for all updating. Whichever choice you 
 make on such issues, remember the sixth maxim: be consistent. 
 
-3.2 Special Forms 
+## 3.2 Special Forms 
 As noted in chapter 1, "special form" is the term used to refer both to Common Lisp's 
 syntactic constructs and the reserved words that mark these constructs. The most 
 commonly used special forms are: 
 
-definitions conditional variables iteration other 
-defun and let do declare 
-defstruct case let* do* function 
-defvar cond pop dolist progn 
-defparameter if push dotimes quote 
-defconstant or setf loop return 
-defmacro unless incf trace 
-labels when decf untrace 
+| definitions   | conditional | variables | iteration | other      |
+|---------------|-------------|-----------|-----------|------------|
+| `defun`       | `and`       | `let`     | `do`      | `declare`  |
+| `defstruct`   | `case`      | `let*`    | `do*`     | `function` |
+| `defvar`      | `cond`      | `pop`     | `dolist`  | `progn`    |
+| `defparameter`| `if`        | `push`    | `dotimes` | `quote`    |
+| `defconstant` | `or`        | `setf`    | `loop`    | `return`   |
+| `defmacro`    | `unless`    | `incf`    |           | `trace`    |
+| `labels`      | `when`      | `decf`    |           | `untrace`  |
 
-To be precise, only declare, function. If, labels, let, let*, progn and quote 
+To be precise, only `declare`, `function`, `if`, `labels`, `let`, `let*`, `progn` and `quote` 
 are true special forms. The others are actually defined as macros that expand into 
 calls to more primitive special forms and functions. There is no real difference to the 
 programmer, and Common Lisp implementations are free to implement macros as 
 special forms and vice versa, so for simplicity we will continue to use "special form" 
 as a blanket term for both true special forms and built-in macros. 
 
-^Association lists are covered in section 3.6. 
+[TK fn1] Association lists are covered in section 3.6. 
 
 <a id='page-51'></a>
-Special Forms for Definitions 
+### Special Forms for Definitions 
 
 In this section we survey the special forms that can be used to introduce new global 
-functions, macros, variables, and structures. We have already seen the defun form 
-for defining functions; the def macro form is similar and is covered on page 66. 
+functions, macros, variables, and structures. We have already seen the `defun` form 
+for defining functions; the `defmacro` form is similar and is covered on [page 66](chapter3.md#page-66). 
 
-(defun function-name (parameter...) " optional documentation" body...) 
+> `(defun` *function-name (parameter...) "optional documentation" body...)*  
+> `(defmacro` *macro-name (parameter...) "optional documentation" body...)* 
 
-(defmacro macro-name (parameter...) "optional documentation" body...) 
-
-There are three forms for introducing special variables, defvar defines a special 
+There are three forms for introducing special variables, `defvar` defines a special 
 variable and can optionally be used to supply an initial value and a documentation 
 string. The initial value is evaluated and assigned only if the variable does not yet 
-have any value, def pa rameter is similar, except that the value is required, and it will 
-be used to change any existing value, def constant is used to declare that a symbol 
+have any value, `defparameter` is similar, except that the value is required, and it will 
+be used to change any existing value, `defconstant` is used to declare that a symbol 
 will always stand for a particular value. 
 
-(defvar vanable-name initial-value "optional documentation") 
-(defparameter vanable-name value "optional documentation") 
-(def constant variable-name value "optional documentation") 
+> `(defvar` *variable-name initial-value "optional documentation")*  
+> `(defparameter` *variable-name value "optional documentation")*  
+> `(defconstant` *variable-name value "optional documentation")* 
 
-All the def - forms define global objects. It is also possible to define local variables 
-with 1 et, and to define local functions with 1 abel s, as we shall see. 
+All the `def-` forms define global objects. It is also possible to define local variables 
+with `let`, and to define local functions with `labels`, as we shall see. 
 
 Most programming languages provide a way to group related data together into 
-a structure. Common Lisp is no exception. The def struct special form defines a 
-structure type (known as a record type in Pascal) and automatically defines functions 
+a structure. Common Lisp is no exception. The `defstruct` special form defines a 
+structure type (known as a *record* type in Pascal) and automatically defines functions 
 to get at components of the structure. The general syntax is: 
 
-(def struct structure-name "optional documentation" slot...) 
+> `(defstruct` *structure-name "optional documentation" slot...)* 
 
 As an example, we could define a structure for names: 
 
+```lisp
 (defstruct name 
-first 
-(middle nil) 
-last) 
+  first 
+  (middle nil) 
+  last) 
+```
 
-This automatically defines the constructor function make-name, the recognizer predicate 
-name-p, and the accessor functions name-first, name-middle and name-last. 
-The (middle nil) means that each new name built by make-name will have a middle 
-name of ni 1 by default. Here we create, access, and modify a structure: 
+This automatically defines the constructor function `make-name`, the recognizer predicate 
+`name-p`, and the accessor functions `name-first`, `name-middle` and `name-last`. 
+The `(middle nil)` means that each new name built by `make-name` will have a middle 
+name of `nil` by default. Here we create, access, and modify a structure: 
 
 <a id='page-52'></a>
 
+```lisp
 > (setf b (make-name :first 'Barney :last 'Rubble)) => 
 #S(NAME :FIRST BARNEY :LAST RUBBLE) 
 
-> (name-first b) ^ BARNEY 
+> (name-first b) => BARNEY 
 
-> (name-middle b) NIL 
+> (name-middle b) => NIL 
 
-> (name-last b) ^ RUBBLE 
+> (name-last b) => RUBBLE 
 
-> (name-p b) =. . 
+> (name-p b) => T 
 
-> (name-p 'Barney) =. NIL ; only the results of make-name are names 
+> (name-p 'Barney) => NIL ; only the results of make-name are names 
 
 > (setf (name-middle b) 'Q) => Q 
 
-> b #S(NAME :FIRST BARNEY .-MIDDLE Q :LAST RUBBLE) 
+> b => #S(NAME :FIRST BARNEY :MIDDLE Q :LAST RUBBLE) 
+```
 
-The printed representation of a structure starts with a #S and is followed by a list 
+The printed representation of a structure starts with a `#S` and is followed by a list 
 consisting of the type of the structure and alternating pairs of slot names and values. 
 Do not let this representation fool you: it is a convenient way of printing the structure, 
 but it is not an accurate picture of the way structures are represented internally. 
-Structures are actually implemented much like vectors. For the name structure, the 
+Structures are actually implemented much like vectors. For the `name` structure, the 
 type would be in the zero element of the vector, the first name in the first element, 
 middle in the second, and last in the third. This means structures are more efficient 
 than lists: they take up less space, and any element can be accessed in a single step. 
-In a list, it takes . steps to access the nth element. 
+In a list, it takes *n* steps to access the *n*th element. 
 
 There are options that give more control over the structure itself and the individual 
 slots. They will be covered later as they come up. 
 
-Special Forms for Conditionals 
+### Special Forms for Conditionals 
 
-We have seen the special form i f, which has the form (i f test then-part else-part), 
-where either the then-part or the else-part is the value, depending on the success of the 
-test. Remember that only . i 1 counts as false; all other values are considered true for 
-the purpose of conditionals. However, the constant t is the conventional value used 
+We have seen the special form `if`, which has the form (`if` *test then-part else-part*), 
+where either the *then-part* or the *else-part* is the value, depending on the success of the 
+*test*. Remember that only `nil` counts as false; all other values are considered true for 
+the purpose of conditionals. However, the constant `t` is the conventional value used 
 to denote truth (unless there is a good reason for using some other value). 
 
 There are actually quite a few special forms for doing conditional evaluation. 
-Technically, i f is defined as a special form, while the other conditionals are macros, 
-so in some sense 1 f is supposed to be the most basic. Some programmers prefer to 
-use i f for most of their conditionals; others prefer cond because it has been around 
+Technically, `if` is defined as a special form, while the other conditionals are macros, 
+so in some sense `if` is supposed to be the most basic. Some programmers prefer to 
+use `if` for most of their conditionals; others prefer `cond` because it has been around 
 the longest and is versatile (if not particularly pretty). Finally, some programmers opt 
-for a style more like English prose, and freely use when, unl ess, 1 f, and all the others. 
+for a style more like English prose, and freely use `when`, `unless`, `if`, and all the others. 
 
 The following table shows how each conditional can be expressed in terms of 
-1 f and cond. Actually, these translations are not quite right, because or, case, and 
-cond take care not to evaluate any expression more than once, while the translations 
-with i f can lead to multiple evaluation of some expressions. The table also has 
+`if` and `cond`. Actually, these translations are not quite right, because `or`, `case`, and 
+`cond` take care not to evaluate any expression more than once, while the translations 
+with `if` can lead to multiple evaluation of some expressions. The table also has 
 
 <a id='page-53'></a>
-translations to cond. The syntax of cond is a series of cond-clauses, each consisting of 
-a test expression followed by any number of result expressions: 
+translations to cond. The syntax of `cond` is a series of *cond-clauses,* each consisting of 
+a test expression followed by any number of *result* expressions: 
 
-(cond {testresult...) 
-{test result...) 
+```
+(cond` (test result...)  
+       (test result...)  
+        ...) 
+```
 
-...) 
-
-cond goes through the cond-clauses one at a time, evaluating each test expression. 
+`cond` goes through the cond-clauses one at a time, evaluating each test expression. 
 As soon as a test expression evaluates non-nil, the result expressions for that clause 
 are each evaluated, and the last expression in the clause is the value of the whole 
-cond. In particular, if a cond-clause consists of just a test and no result expressions, 
-then the value of the cond is the test expression itself, if it is non-nil. If all of the test 
-expressions evaluate to nil, then nil is returned as the value of the cond. A common 
-idiom is to make the last cond-clause be (t result...). 
+`cond`. In particular, if a cond-clause consists of just a test and no result expressions, 
+then the value of the `cond` is the test expression itself, if it is non-nil. If all of the test 
+expressions evaluate to nil, then nil is returned as the value of the `cond`. A common 
+idiom is to make the last cond-clause be `(t` *result...).*
 
-The forms when and unl ess operate like a single cond clause. Both forms consist 
+The forms `when` and `unless` operate like a single `cond` clause. Both forms consist 
 of a test followed by any number of consequents, which are evaluated if the test is 
-satisfied-that is, if the test is true for when or false for unl ess. 
+satisfied-that is, if the test is true for `when` or `false` for `unless`. 
 
-The and form tests whether every one of a list of conditions is true, and or tests 
+The `and` form tests whether every one of a list of conditions is true, and `or` tests 
 whether any one is true. Both evaluate the arguments left to right, and stop as soon 
 as the final result can be determined. Here is a table of equivalences: 
 
-conditional if form cond form 
-(when test ah c) (if test (progn a be)) (cond {testaba)) 
-(unless testxy) (if {nottest) (progn xy)) (cond {{not test) xy)) 
-(and abc) (if a (if b c)) (cond(fl (cond {be)))) 
-(or ahc) (if a a (if b b c)) (cond (a) {b) (c)) 
-(case a {b c) (t x)) (if (eql a 'b) c x) (cond ((eql a 'b)c) {tx)) 
+| conditional           | `if` form                   | `cond` form                 |
+|-----------------------|-----------------------------|-----------------------------|
+| (when test a b c)     | (if test (progn a b c))     | (cond (test a b c))         |
+| (unless test x y)     | (if (not test) (progn x y)) | (cond ((not test) x y))     |
+| (and a b c)           | (if a (if b c))             | (cond (a (cond (b c))))     |
+| (or a b c)            | (if a a (if b b c))         | (cond (a) (b) (c))          |
+| (case a (b c) (t x))  | (if (eql a 'b) c x)         | (cond ((eql a 'b) c) (t x)) |
 
-It is considered poor style to use and and or for anything other than testing a 
-logical condition, when, unl ess, and 1 f can all be used for taking conditional action. 
+It is considered poor style to use `and` and `or` for anything other than testing a 
+logical condition, `when`, `unless`, and `if` can all be used for taking conditional action. 
 For example: 
 
-(and (> . 100) 
-(princ "N is large.")) ; Bad style! 
+```lisp
+(and (> n 100) 
+     (princ "N is large."))   ; Bad style! 
 
-(or (<= . 100) 
-(princ "N is large.")) ; Even worse style! 
+(or (<= n 100) 
+    (princ "N is large."))    ; Even worse style! 
 
-(cond ((> . 100) ; OK. but not MY preference 
-(princ "N is large.")) 
+(cond ((> n 100)              ; OK. but not MY preference 
+       (princ "N is large.")) 
 
-(when (> . 100) 
-(princ "N is large.")) ; Good style. 
+(when (> n 100) 
+  (princ "N is large."))      ; Good style. 
+```
 
-When the main purpose is to return a value rather than take action, cond and i f 
-(with explicit . i 1 in theelsecase)are preferred overwhenandunl ess, which implicitly 
-
+When the main purpose is to return a value rather than take action, `cond` and `if` 
+(with explicit `nil` in the else case) are preferred over `when` and `unless`, which implicitly 
 <a id='page-54'></a>
-
-return nil in the else case, when and unl ess are preferred when there is only one 
-possibility, i f (or, for some people, cond) when there are two, and cond when there 
+return `nil` in the else case. `when` and `unless` are preferred when there is only one 
+possibility, `if` (or, for some people, `cond`) when there are two, and `cond` when there 
 are more than two: 
 
-(defun tax-bracket (income) 
+```lisp
+  (defun tax-bracket (income) 
+  "Determine what percent tax should be paid for this income." 
+  (cond ((< income 10000.00) 0.00) 
+        ((< income 30000.00) 0.20) 
+        ((< income 50000.00) 0.25) 
+        ((< income 70000.00) 0.30) 
+        (t                   0.35))) 
+```
 
-"Determine what percent tax should be paid for this income." 
+If there are several tests comparing an expression to constants, then `case` is appropriate. 
+A `case` form looks like: 
 
-(cond ((< income 10000.00) 0.00) 
-
-((< income 30000.00) 0.20) 
-((< income 50000.00) 0.25) 
-((< income 70000.00) 0.30) 
-(t 0.35))) 
-
-If there are several tests comparing an expression to constants, then case is appropriate. 
-A case form looks like: 
-
+```
 (case expression 
-(matchresult..)...) 
+    (match result...)...) 
+```
 
-The expression is evaluated and compared to each successive match. As soon as one 
-is eql, the result expressions are evaluated and the last one is returned. Note that the 
-match expressions are not evaluated. If a match expression is a list, then case tests if 
-the expression is eql to any member of the list. If a match expression is the symbol 
-otherwi se (or the symbol t), then it matches anything. (It only makes sense for this 
-otherwl se clause to be the last one.) 
+The *expression* is evaluated and compared to each successive *match.* As soon as one 
+is `eql`, the *result* expressions are evaluated and the last one is returned. Note that the 
+*match* expressions are *not* evaluated. If a *match* expression is a list, then `case` tests if 
+the *expression* is `eql` to any member of the list. If a *match* expression is the symbol 
+`otherwise` (or the symbol `t`), then it matches anything. (It only makes sense for this 
+`otherwise` clause to be the last one.) 
 
-There is also another special form, typecase, which compares the type of an 
-expression against several possibilities and, like case, chooses the first clause that 
-matches. In addition, the special forms ecase and etypecase are just like case and 
-typecase except that they signal an error if there is no match. You can think of the e 
-as standing for either "exhaustive" or "error." The forms cease and etypecase also 
+There is also another special form, `typecase`, which compares the type of an 
+expression against several possibilities and, like `case`, chooses the first clause that 
+matches. In addition, the special forms `ecase` and `etypecase` are just like `case` and 
+`typecase` except that they signal an error if there is no match. You can think of the e 
+as standing for either "exhaustive" or "error." The forms `ccase` and `ctypecase` also 
 signal errors, but they can be continuable errors (as opposed to fatal errors): the user 
 is offered the chance to change the expression to something that satisfies one of the 
-matches. Here are some examples of case forms and their cond equivalents: 
+matches. Here are some examples of `case` forms and their `cond` equivalents: 
 
-(case . (cond 
-(1 10) ((eql . 1) 10) 
-(2 20)) ((eql . 2) 20)) 
-(typecase . (cond 
-(number (abs x)) ((typep . 'number) (abs x)) 
-(list (length x))) ((typep . 'list ) (length x))) 
-(ecase . (cond 
-(1 10) ((eql . 1) 10) 
-(2 20)) ((eql . 2) 20) 
-(t (error "no valid case"))) 
+```
+(case x               (cond 
+  (1 10)                ((eql x 1) 10) 
+  (2 20))               ((eql x 2) 20)) 
+
+(typecase x           (cond 
+  (number (abs x))      ((typep x 'number) (abs x)) 
+  (list (length x)))    ((typep x 'list ) (length x))) 
+
+(ecase x              (cond 
+  (1 10)                ((eql x 1) 10) 
+  (2 20))               ((eql x 2) 20) 
+                        (t (error "no valid case"))) 
+
+(etypecase x          (cond 
+  (number (abs x))      ((typep x 'number) (abs x)) 
+  (list (length x)))    ((typep x 'list ) (length x)) 
+                        (t (error "no valid typecase"))) 
+```
 
 <a id='page-55'></a>
-(etypecase . (cond 
-(number (abs .)) ((typep . 'number) (abs x)) 
-(list (length x))) ((typep . 'list ) (length x)) 
-(t (error "no valid typecase"))) 
+### Special Forms for Dealing with Variables and Places 
 
-Special Forms for Dealing with Variables and Places 
-
-The special form setf is used to assign a new value to a variable or place, much as an 
-assignment statement with = or := is used in other languages. A place, or generalized 
-variable is a name for a location that can have a value stored in it. Here is a table of 
+The special form `setf` is used to assign a new value to a variable or *place,* much as an 
+assignment statement with `=` or `:=` is used in other languages. A place, or *generalized 
+variable* is a name for a location that can have a value stored in it. Here is a table of 
 corresponding assignment forms in Lisp and Pascal: 
 
-Lisp /* Pascal */ 
-(setf . 0) . := 0; 
-(setf (aref A i j) 0) A[i,j] := 0; 
-(setf (rest list ) nil) list\res t := nil ; 
-(setf (name-middle b) 'Q) b\middle := "Q"; 
+```
+;; Lisp                       /* Pascal */ 
+(setf x 0)                    x := 0; 
+(setf (aref A i j) 0)         A[i,j] := 0; 
+(setf (rest list) nil)        list^.rest := nil; 
+(setf (name-middle b) 'Q)     b^.middle := "Q"; 
+```
 
+## wip
 setf can be used to set a component of a structure as well as to set a variable. In 
 languages like Pascal, the expressions that can appear on the left-hand side of an 
 assignment statement are limited by the syntax of the language. In Lisp, the user can 
