@@ -3,10 +3,10 @@
 
 ## Overview of Lisp 
 
-> *No doubt about it. Common Lisp is a big language.* 
+> *No doubt about it. Common Lisp is a* big *language.* 
 >
-—Guy L. Steele, Jr.  
-Foreword to Koschman 1990 
+> —Guy L. Steele, Jr.  
+> Foreword to Koschman 1990 
 
 This chapter briefly covers the most important special forms and functions in Lisp. It 
 can be safely skipped or skimmed by the experienced Common Lisp programmer 
@@ -327,350 +327,407 @@ assignment statement with `=` or `:=` is used in other languages. A place, or *g
 variable* is a name for a location that can have a value stored in it. Here is a table of 
 corresponding assignment forms in Lisp and Pascal: 
 
-```
-;; Lisp                       /* Pascal */ 
-(setf x 0)                    x := 0; 
-(setf (aref A i j) 0)         A[i,j] := 0; 
-(setf (rest list) nil)        list^.rest := nil; 
-(setf (name-middle b) 'Q)     b^.middle := "Q"; 
+```lisp
+;; Lisp 
+(setf x 0) 
+(setf (aref A i j) 0) 
+(setf (rest list) nil) 
+(setf (name-middle b) 'Q) 
 ```
 
-## wip
-setf can be used to set a component of a structure as well as to set a variable. In 
+```
+/* Pascal */ 
+x := 0; 
+A[i,j] := 0; 
+list^.rest := nil; 
+b^.middle := "Q"; 
+```
+
+`setf` can be used to set a component of a structure as well as to set a variable. In 
 languages like Pascal, the expressions that can appear on the left-hand side of an 
 assignment statement are limited by the syntax of the language. In Lisp, the user can 
-extend the expressions that are allowed in a s etf form using the special forms defs et f 
-or define-setf-method. These are introduced on pages 514 and 884 respectively. 
+extend the expressions that are allowed in a `setf` form using the special forms `defsetf` 
+or `define-setf-method`. These are introduced on pages 514 and 884 respectively. 
 
-There are also some built-in functions that modify places. For example, (rpl a cd 
-list nil) has the same effect as (setf (rest list) nil), except that it returns 
-list instead of ni 1. Most Common Lisp programmers prefer to use the setf forms 
+There are also some built-in functions that modify places. For example, `(rplacd list nil)`
+has the same effect as `(setf (rest list) nil)`, except that it returns 
+`list` instead of `nil`. Most Common Lisp programmers prefer to use the `setf` forms 
 rather than the specialized functions. 
 
-If you only want to set a variable, the special form setq can be used instead. In 
-this book I choose to use setf throughout, opting for consistency over specificity. 
+If you only want to set a variable, the special form `setq` can be used instead. In 
+this book I choose to use `setf` throughout, opting for consistency over specificity. 
 
 The discussion in this section makes it seem that variables (and slots of structures) 
 are assigned new values all the time. Actually, many Lisp programs do no 
 assignments whatsoever. It is very common to use Lisp in a functional style where 
 new variables may be introduced, but once a new variable is established, it never 
 changes. One way to introduce a new variable is as a parameter of a function. It 
-is also possible to introduce local variables using the special form 1 et. Following 
-are the general 1 et form, along with an example. Each variable is bound to the 
+is also possible to introduce local variables using the special form `let`. Following 
+are the general `let` form, along with an example. Each variable is bound to the 
 corresponding value, and then the body is evaluated: 
 
 <a id='page-56'></a>
 
-(let((variablevalue)..,) (let ((x 40) 
-body...) (y (+ 1 1))) 
-(+ X y)) 42 
+```lisp
+(let ((variable value)..,) 
+  body...) 
+```
 
-Defining a local variable with a 1 et form is really no different from defining parameters 
+```lisp
+(let ((x 40) 
+      (y (+ 1 1))) 
+  (+ x y)) => 42 
+```
+
+Defining a local variable with a let form is really no different from defining parameters 
 to an anonymous function. The former is equivalent to: 
 
-((lambdei(variable..,) ((lambda (x y) 
-body...) (+ X y)) 
-value..,) 40 
+```
+((lambda (variable..,) 
+    body...) 
+value...) 
+```
 
-(+ 1 D) 
+```lisp
+((lambda (x y) 
+  (+ x y)) 
+40 
+(+ 1 1)) 
+```
 
 First, all the values are evaluated. Then they are bound to the variables (the parameters 
 of the lambda expression), and finally the body is evaluated, using those 
 bindings. 
 
-The special form 1 et* is appropriate when you want to use one of the newly 
-introduced variables in a subsequent value computation. For example: 
+The special form `let*` is appropriate when you want to use one of the newly 
+introduced variables in a subsequent *value* computation. For example: 
 
+```lisp
 (let* ((x 6) 
-(y (* . .))) 
-(+ . y)) 42 
+       (y (* x x))) 
+  (+ x y)) => 42 
+```
 
-We could not have used 1 et here, because then the variable . would be unbound 
+We could not have used `let` here, because then the variable `x` would be unbound 
+during the computation of `y`'s value. 
 
-during the computation of y's value. 
-
-&#9635; Exercise 3.1 [m] Show a 1 ambda expression that is equivalent to the above 1 et* 
-expression. You may need more than one 1 ambda. 
+&#9635; Exercise 3.1 [m] Show a `lambda` expression that is equivalent to the above `let*` 
+expression. You may need more than one `lambda`. 
 
 Because lists are so important to Lisp, there are special forms for adding and 
 deleting elements from the front of a list—in other words, for treating a list as a stack. 
-If 1 i st is the name of a location that holds a list, then (push A: 1 i st) will change 1 i st 
-to have . as its first element, and (pop 1 i st) will return the first element and, as 
-a side-effect, change 1 i st to no longer contain the first element, push and pop are 
+If `list` is the name of a location that holds a list, then (`push x list`) will change `list` 
+to have `x` as its first element, and (`pop list`) will return the first element and, as 
+a side-effect, change `list` to no longer contain the first element, `push` and `pop` are 
 equivalent to the following expressions: 
 
-(push . list) = (setf list (cons . list)) 
+`(push x list)` &equiv; `(setf list (cons . list)) `
+`(pop list)` &equiv; 
+```lisp
+(let ((result (first list))) 
+ (setf list (rest list)) 
+ result)
+``` 
 
-(pop list) = (let ((result (first list))) 
-(setf list (rest list)) 
-result) 
-
-Just as a Hst can be used to accumulate elements, a running sum can be used to 
-accumulate numbers. Lisp provides two more special forms, 1 ncf and decf, that can 
+Just as a list can be used to accumulate elements, a running sum can be used to 
+accumulate numbers. Lisp provides two more special forms, `incf` and `decf`, that can 
 be used to increment or decrement a sum. For both forms the first argument must 
-
 <a id='page-57'></a>
-be a location (a variable or other setf-able form) and the second argument, which 
+be a location (a variable or other `setf`-able form) and the second argument, which 
 is optional, is the number to increment or decrement by. For those who know C, 
-(incf x) is equivalent to -H-X, and (incf . 2) is equivalent to x+=2. In Lisp the 
+`(incf x)` is equivalent to `++x`, and `(incf x 2)` is equivalent to `x+=2`. In Lisp the 
 equivalence is: 
 
-(incf x) = (incf . 1) = (setf . (+ . D) 
-(decf x) = (decf . 1) = (setf . (- . D) 
+[tk: verify rendering]
+
+`(incf x)` &equiv; `(incf x 1)` &equiv; `(setf x (+ x D)`  
+
+`(decf x)` &equiv; `(decf x 1)` &equiv; `(setf x (- x D)` 
 
 When the location is a complex form rather than a variable. Lisp is careful to expand 
-into code that does not evaluate any subform more than once. This holds for push, 
-pop, 1 ncf, and decf. In the following example, we have a list of players and want 
+into code that does not evaluate any subform more than once. This holds for `push`, 
+`pop`, `incf`, and `decf`. In the following example, we have a list of players and want 
 to decide which player has the highest score, and thus has won the game. The 
-structure pi ayer has slots for the player's score and number of wins, and the function 
-determi ne -wi nner increments the winning player's w1 ns field. The expansion of the 
-i ncf form binds a temporary variable so that the sort is not done twice. 
+structure `player` has slots for the player's score and number of wins, and the function 
+`determine-winner` increments the winning player's `wins` field. The expansion of the 
+`incf` form binds a temporary variable so that the sort is not done twice. 
 
-(defstruct player (score 0) (wins 0)) 
+```lisp
+(defstruct player (score 0) (wins 0))
 
-(defun determine-winner (players) 
+(defun determine-winner (players)
+  "Increment the WINS for the player with highest score."
+  (incf (player-wins (first (sort players #'> 
+                                  :key #'player-score)))))
+```
 
-"Increment the WINS for the player with highest score." 
+&equiv;
 
-(incf (player-wins (first (sort players #*> 
+```lisp
+(defun determine-winner (players)
+  "Increment the WINS for the player with highest score."
+  (let ((temp (first (sort players #'> :key #'player-score)))) 
+    (setf (player-wins temp) (+ (player-wins temp) 1)))) 
+```
 
-:key #'player-score))))) 
-
-(defun determine-winner (players) 
-
-"Increment the WINS for the player with highest score." 
-
-(let ((temp (first (sort players #'> :key #'player-score)))) 
-
-(setf (player-wins temp) (+ (player-wins temp) 1)))) 
-
-Functions and Special Forms for Repetition 
+### Functions and Special Forms for Repetition 
 
 Many languages have a small number of reserved words for forming iterative loops. 
-For example, Pascal has whi 1 e, repeat, and for statements. In contrast, Conunon 
+For example, Pascal has `while`, `repeat`, and `for` statements. In contrast, Common 
 Lisp has an almost bewildering range of possibilities, as summarized below: 
+[TK: verify rendering below]
 
-dolist loop over elements of a list 
-dot1mes loop over successive integers 
-do, do* general loop, sparse syntax 
-loop general loop, verbose syntax 
-mapc. mapcar loop over elements of lists(s) 
-some, every loop over list until condition 
-find, reduce, efc. more specific looping functions 
-recursion general repetition 
+| []()                  |                                 |
+|-----------------------|---------------------------------|
+| `dolist`              | loop over elements of a list    |
+| `dotimes`             | loop over successive integers   |
+| `do,do*`              | general loop, sparse syntax     |
+| `loop`                | general loop, verbose syntax    |
+| `mapc, mapcar`        | loop over elements of list(s)   |
+| `some, every`         | loop over list until condition  |
+| `find, reduce,` etc.  | more specific looping functions |
+| *recursion*           | general repetition              |
 
 <a id='page-58'></a>
 
-To explain each possibiUty, we will present versions of the function length, which 
-returns the number of elements in a list. First, the special form dol i st can be used 
+To explain each possibility, we will present versions of the function `length`, which 
+returns the number of elements in a list. First, the special form `dolist` can be used 
 to iterate over the elements of a list. The syntax is: 
 
-(dol i st (variable list optional-result) body...) 
+```lisp
+(dolist (variable list optional-result) body...) 
+```
 
-This means that the body is executed once for each element of the list, with variable 
+This means that the body is executed once for each element of the list, with *variable* 
 bound to the first element, then the second element, and so on. At the end, 
-dol i st evaluates and returns the optional-result expression, or nil if there is no result 
+`dolist` evaluates and returns the *optional-result* expression, or nil if there is no result 
 expression. 
 
-Below is a version of length usingdol i st. The 1 et form introduces anew variable, 
-1 en, which is initially bound to zero. The dol i st form then executes the body once 
-for each element of the list, with the body incrementing 1 en by one each time. This 
-use is unusual in that the loop iteration variable, el ement, is not used in the body. 
+Below is a version of `length` using `dolist`. The `let` form introduces anew variable, 
+`len`, which is initially bound to zero. The `dolist` form then executes the body once 
+for each element of the list, with the body incrementing `len` by one each time. This 
+use is unusual in that the loop iteration variable, `element`, is not used in the body. 
 
-(defun length1 (list ) 
-(let (den 0)) start with LEN=0 
-(dolist (element list ) and on each iteration 
-(incf len)) increment LEN by 1 
-len)) and return LEN 
+```lisp
+(defun length1 (list)
+  (let ((len 0))            ; start with LEN=0
+    (dolist (element list)  ; and on each iteration
+      (incf len))           ;  increment LEN by 1
+    len))                   ; and return LEN
+```
 
-It is also possible to use the optional result of dol i st, as shown below. While many 
+It is also possible to use the optional result of `dolist`, as shown below. While many 
 programmers use this style, I find that it is too easy to lose track of the result, and so 
 I prefer to place the result last explictly. 
 
-(defun length1.1 (list) ; alternate version: 
-(let (den 0)) ; (not my preference) 
-(dolist (element list len) ; uses len as result here 
-(incf len)))) 
+```lisp
+(defun length1.1 (list)         ; alternate version:
+  (let ((len 0))                ; (not my preference)
+    (dolist (element list len)  ; uses len as result here
+      (incf len))))           
+```
 
-The function mapc performs much the same operation as the special form dol i st. In 
-the simplest case, mapc takes two arguments, the first a function, the second a list. It 
-applies the function to each element of the list. Here is length using mapc: 
+The function `mapc` performs much the same operation as the special form `dolist`. In 
+the simplest case, `mapc` takes two arguments, the first a function, the second a list. It 
+applies the function to each element of the list. Here is `length` using `mapc`: 
 
-(defun lengthZ (list) 
-(let (den 0)) ; start with LEN=0 
-(mapc #'dambda (element) ; and on each iteration 
-(incf len)) ; increment LEN by 1 
-list) 
-len)) ; and return LEN 
+```lisp
+(defun length2 (list)
+  (let ((len 0))                    ; start with LEN=0
+    (mapc #'(lambda (element)       ; and on each iteration
+              (incf len))           ;  increment LEN by 1
+          list)
+    len))                           ; and return LEN
+```
 
 There are seven different mapping functions, of which the most useful are mapc and 
-mapca r. mapca r executes the same function calls as mapc, but then returns the results 
-
+`mapcar`. `mapcar` executes the same function calls as `mapc`, but then returns the results 
 <a id='page-59'></a>
 in a list. 
 
-There is also a dot i mes form, which has the syntax: 
+There is also a `dotimes` form, which has the syntax: 
 
-(dot i mes (variable number optional-result) body,..) 
-and executes the body with variable bound first to zero, then one, all the way up to 
-number-1 (for a total of number times). Of course, dot i mes is not appropriate for 
-implementing length, since we don't know the number of iterations ahead of time. 
-There are two very general looping forms, do and 1 oop. The syntax of do is as 
+```
+(dotimes (variable number optional-result) body,..) 
+```
+
+and executes the body with *variable* bound first to zero, then one, all the way up to 
+*number*-1 (for a total of *number* times). Of course, `dotimes` is not appropriate for 
+implementing `length`, since we don't know the number of iterations ahead of time. 
+There are two very general looping forms, `do` and `loop`. The syntax of `do` is as 
 follows: 
 
+```lisp
 (do ((variable initial next)...) 
-(exit-test result) 
-body...) 
+    (exit-test result) 
+  body...) 
+```
 
-Each variable is initially bound to the initial value. If exit-test is true, then result is returned. 
-Otherwise, the body is executed and each variable is set to the corresponding 
-next value and exit-test is tried again. The loop repeats until exit-test is true. If a next 
+Each variable is initially bound to the *initial* value. If *exit-test* is true, then *result* is returned. 
+Otherwise, the body is executed and each *variable* is set to the corresponding 
+*next* value and *exit-test* is tried again. The loop repeats until *exit-test* is true. If a *next* 
 value is omitted, then the corresponding variable is not updated each time through 
-the loop. Rather, it is treated as if it had been bound with a 1 et form. 
+the loop. Rather, it is treated as if it had been bound with a `let` form. 
 
-Here is length implemented withdo,usingtwo variables, 1 en to count the number 
-of elements, and 1 to go down the list. This is often referred to as cdr-ing down a list, 
-because on each operation we apply the function cdr to the list. (Actually, here we 
-have used the more mnemonic name rest instead of cdr.) Note that the do loop has 
+Here is `length` implemented with `do`, using two variables, `len` to count the number 
+of elements, and `l` to go down the list. This is often referred to as *cdr-ing down a list,* 
+because on each operation we apply the function `cdr` to the list. (Actually, here we 
+have used the more mnemonic name `rest` instead of `cdr`.) Note that the `do` loop has 
 no body! All the computation is done in the variable initialization and stepping, and 
 in the end test. 
 
-(defun lengths (list) 
-(do (den 0 (+ len D) ; start with LEN=0. increment 
-(1 list (rest 1))) ; ... on each iteration 
-((null 1) len))) ; (until the end of the list) 
+```lisp
 
-I find the do form a little confusing, because it does not clearly say that we are looping 
+(defun length3 (list)
+  (do ((len 0 (+ len 1))   ; start with LEN=0, increment 
+       (l list (rest l)))  ; ... on each iteration
+      ((null l) len)))     ; (until the end of the list)
+```
+
+I find the `do` form a little confusing, because it does not clearly say that we are looping 
 through a list. To see that it is indeed iterating over the list requires looking at both 
-the variable 1 and the end test. Worse, there is no variable that stands for the current 
-element of the Ust; we would need to say (first 1 ) to get at it. Both dol i st and 
-mapc take care of stepping, end testing, and variable naming automatically. They are 
-examples of the "be specific" principle. Because it is so unspecific, do will not be 
+the variable `l` and the end test. Worse, there is no variable that stands for the current 
+element of the list; we would need to say `(first l)` to get at it. Both `dolist` and 
+`mapc` take care of stepping, end testing, and variable naming automatically. They are 
+examples of the "be specific" principle. Because it is so unspecific, `do` will not be 
 used much in this book. However, many good programmers use it, so it is important 
-to know how to read do loops, even if you decide never to write one. 
+to know how to read `do` loops, even if you decide never to write one. 
 
-The syntax of 1 oop is an entire language by itself, and a decidedly non-Lisp-like 
-language it is. Rather than list all the possibilities for 1 oop, we will just give examples 
-
+The syntax of `loop` is an entire language by itself, and a decidedly non-Lisp-like 
+language it is. Rather than list all the possibilities for `loop`, we will just give examples 
 <a id='page-60'></a>
+here, and refer the reader to *Common Lisp the Language,* 2d edition, or chapter 24.5 for 
+more details. Here are three versions of length using `loop`: 
 
-here, and refer the reader to Common Lisp the Language, 2d edition, or chapter 24.5 for 
-more details. Here are three versions of length using 1 oop: 
+```lisp
 
 (defun length4 (list) 
-(loop for element in list ; go through each element 
-count t)) ; counting each one 
+  (loop for element in list      ; go through each element
+        count t))                ;   counting each one 
 
-(defun lengths (11st) 
-(loop for element in list ; go through each element 
-summing 1)) ; adding 1 each time 
+(defun length5 (list) 
+  (loop for element in list      ; go through each element
+        summing 1))              ;   adding 1 each time
 
-(defun lengthe (list) 
-
-(loop with len = 0 ; start with LEN=0 
-until (null list) ; and (until end of list) 
-for element = (pop list) ; on each iteration 
-do (incf len) ; increment LEN by 1 
-finally (return len))) ; and return LEN 
+(defun length6 (list) 
+  (loop with len = 0             ; start with LEN=0
+        until (null list)        ; and (until end of list)
+        for element = (pop list) ; on each iteration
+        do (incf len)            ;  increment LEN by 1
+        finally (return len)))   ; and return LEN
+```
 
 Every programmer learns that there are certain kinds of loops that are used again 
-and again. These are often called programming idioms or cliches. An example is going 
+and again. These are often called *programming idioms* or *cliches.* An example is going 
 through the elements of a list or array and doing some operation to each element. 
 In most languages, these idioms do not have an explicit syntactic marker. Instead, 
 they are implemented with a general loop construct, and it is up to the reader of the 
 program to recognize what the programmer is doing. 
 
 Lisp is unusual in that it provides ways to explicitly encapsulate such idioms, and 
-refer to them with explicit syntactic and functional forms, dol 1 st and dotimes are 
+refer to them with explicit syntactic and functional forms, `dolist` and `dotimes` are 
 two examples of this-they both follow the "be specific" principle. Most programmers 
-prefer to use a dol i st rather than an equivalent do, because it cries out "this loop 
-iterates over the elements of a list." Of course, the corresponding do form also says 
+prefer to use a `dolist` rather than an equivalent `do`, because it cries out "this loop 
+iterates over the elements of a list." Of course, the corresponding `do` form also says 
 the same thing—but it takes more work for the reader to discover this. 
 
-In addition to special forms like dol 1 st and dotimes, there are quite a few functions 
-that are designed to handle common idioms. Two examples are count-If, 
+In addition to special forms like `dolist` and `dotimes`, there are quite a few functions 
+that are designed to handle common idioms. Two examples are `count-if`, 
 which counts the number of elements of a sequence that satisfy a predicate, and 
-position-If, which returns the index of an element satisfying a predicate. Both 
-can be used to implement length. In length7 below, count -1f gives the number of 
-elements in 11 st that satisfy the predicate true. Since true is defined to be always 
+`position-if`, which returns the index of an element satisfying a predicate. Both 
+can be used to implement `length`. In `length7` below, `count-if` gives the number of 
+elements in `list` that satisfy the predicate `true`. Since `true` is defined to be always 
 true, this gives the length of the list. 
 
-(defun length? (list) 
-(count-if #*true list)) 
+```lisp
+(defun length7 (list)
+  (count-if #'true list))
 
-(defun true (x) t) 
+(defun true (x) t)
+```
 
-In lengthS, the function position -1 f finds the position of an element that satisfies 
-the predicate true, starting from the end of the list. This will be the very last element 
-
+In length8, the function `position-if` finds the position of an element that satisfies 
+the predicate `true`, starting from the end of the list. This will be the very last element 
 <a id='page-61'></a>
 of the list, and since indexing is zero-based, we add one to get the length. Admittedly, 
-this is not the most straightforward implementation of length. 
+this is not the most straightforward implementation of `length`. 
 
-(defun lengths (list) 
-
-(if (null list) 
-0 
-(+ 1 (position-if #*true list :from-end t)))) 
+```lisp
+(defun length8 (list)
+  (if (null list)
+      0
+      (+ 1 (position-if #'true list :from-end t))))
+```
 
 A partial table of functions that implement looping idioms is given below. These 
 functions are designed to be flexible enough to handle almost all operations on 
-sequences. The flexibility comes in three forms. First, functions like mapcar can 
+sequences. The flexibility comes in three forms. First, functions like `mapcar` can 
 apply to an arbitrary number of lists, not just one: 
 
-> (mapcar '(1 2 3)) => (-1 -2 -3) 
-> (mapcar #'+ '(1 2) '(10 20)) (11 22) 
+```lisp
+> (mapcar #'- '(1 2 3)) => (-1 -2 -3) 
+> (mapcar #'+ '(1 2) '(10 20)) => (11 22) 
 > (mapcar #'+ '(1 2) '(10 20) '(100 200)) => (111 222) 
+```
 
 Second, many of the functions accept keywords that allow the user to vary the test 
 for comparing elements, or to only consider part of the sequence. 
 
-> (remove 1 '(1 2 3 2 1 0 -1)) =4^ (2 3 2 0 -1) 
+```lisp
+> (remove 1 '(1 2 3 2 1 0 -1)) => (2 3 2 0 -1) 
 
-> (remove 1 '(1 2 3 2 1 0 -1) :key #'abs) ^(2320) 
+> (remove 1 '(1 2 3 2 1 0 -1) :key #'abs) => (2 3 2 0) 
 
-> (remove 1 '(1 2 3 2 1 0 -1) :test #'<) =>(110 -1) 
+> (remove 1 '(1 2 3 2 1 0 -1) :test #'<) => (1 1 0 -1) 
 
-> (remove 1 '(1 2 3 2 1 0 -1) rstart 4) (1 2 3 2 0 -1) 
+> (remove 1 '(1 2 3 2 1 0 -1) :start 4) => (1 2 3 2 0 -1) 
+```
 
-Third, some have corresponding functions ending in -if or -if-not that take a 
+Third, some have corresponding functions ending in `-if` or `-if-not` that take a 
 predicate rather than an element to match against: 
 
-> (remove-if #Oddp '(1 2 3 2 1 0 -1)) =^(2 2 0) 
+```lisp
+> (remove-if #'oddp '(1 2 3 2 1 0 -1)) => (2 2 0) 
 
-> (remove-if-not #'oddp '(123210 -1)) =^(131 -1) 
+> (remove-if-not #'oddp '(1 2 3 2 1 0 -1)) => (1 3 1 -1) 
 
-> (find-if #'evenp '(123210 -1)) 2 
+> (find-if #'evenp '(1 2 3 2 1 0 -1)) => 2 
+```
 
 The following two tables assume these two values: 
 
-(setf . '(a b c)) 
-
+```lisp
+(setf x '(a b c)) 
 (setf y '(1 2 3)) 
+```
 
 The first table lists functions that work on any number of lists but do not accept 
 keywords: 
 
 <a id='page-62'></a>
 
-(every #Oddp y) =..i 1 test if every element satisfies a predicate 
-(some #Oddp y) => t test if some element satisfies predicate 
-(mapcar y) =^(-1 -2 -3) apply function to each element and return result 
-(mapc #'print y) prints 12 3 perform operation on each element 
+| []() | | |
+|------|-|-|
+| `(every #'oddp y)`  | `=> nil`          | test if every element satisfies a predicate |
+| `(some #'oddp y)`   | `=> t`            | test if some element satisfies predicate | 
+| `(mapcar y)`        | `=> (-1 -2 -3)`   | apply function to each element and return result | 
+| `(mapc #'print y)`  | *prints* `1 2 3`  | perform operation on each element | 
 
-The second table lists functions that have -if and -if-not versions and also 
-accept keyword arguments: 
+The second table lists functions that have `-if` and `-if-not` versions and also 
+accept keyword arguments: [TK: check this]
 
-(member 2 y) =^(2 3) see if element is in list 
-(count 'b x) =>1 count the number of matching elements 
-(delete 1 y) =>(2 3) omit matching elements 
-(find 2 y) ^2 find first element that matches 
-(position 'a x) =^0 find index of element in sequence 
-(reduce #'+ y) apply function to succesive elements 
-(remove 2 y) =>(1 3) like del ete, but makes a new copy 
-(substitute 4 2 y) =^(14 3) replace elements with new ones 
+| []()                  |               |                                       | 
+|-----------------------|---------------|---------------------------------------| 
+| `(member 2 y)`        | `=>(2 3)      | see if element is in list             |
+| `(count 'b x)`        | `=>1          | count the number of matching elements |
+| `(delete 1 y)`        | `=>(2 3)      | omit matching elements                |
+| `(find 2 y)`          | `=> 2         | find first element that matches       |
+| `(position 'a x)`     | `=> 0         | find index of element in sequence     |
+| `(reduce #'+ y)`      | `=> 6         | apply function to succesive elements  |
+| `(remove 2 y)`        | `=>(1 3)`     | like `delete`, but makes a new copy   |
+| `(substitute 4 2 y)`  | `=> (1 4 3)`  | replace elements with new ones        |
 
-Repetition through Recursion 
+#### Repetition through Recursion 
 
 Lisp has gained a reputation as a "recursive" language, meaning that Lisp encourages 
 programmers to write functions that call themselves. As we have seen above, there is 
@@ -678,15 +735,16 @@ a dizzying number of functions and special forms for writing loops in Common Lis
 but it is also true that many programs handle repetition through recursion rather 
 than with a syntactic loop. 
 
-One simple definition of length is "the empty list has length 0, and any other list 
+One simple definition of `length` is "the empty list has length 0, and any other list 
 has a length which is one more than the length of the rest of the list (after the first 
 element)." This translates directly into a recursive function: 
 
-(defun length9 (list) 
-
-(if (null list) 
-0 
-(+ 1 (length9 (rest list))))) 
+```lisp
+(defun length9 (list)
+  (if (null list)
+      0
+      (+ 1 (length9 (rest list)))))
+```
 
 This version of length arises naturally from the recursive definition of a list: "a list 
 is either the empty list or an element consed onto another list." In general, most 
@@ -695,15 +753,12 @@ on. Some kinds of data, like binary trees, are hard to deal with in anything but
 recursive fashion. Others, like Hsts and integers, can be defined either recursively 
 (leading to recursive functions) or as a sequence (leading to iterative functions). In 
 this book, I tend to use the "list-as-sequence" view rather than the "list-as-first-and-
-rest" view. The reason is that defining a hst as a first and a rest is an arbitrary and 
+rest" view. The reason is that defining a list as a first and a rest is an arbitrary and 
 artificial distinction that is based on the implementation of lists that Lisp happens to 
 use. But there are many other ways to decompose a list. We could break it into the last 
-
 <a id='page-63'></a>
 element and all-but-the-last elements, for example, or the first half and the second 
-
 half. The "list-as-sequence" view makes no such artificial distinction. It treats all 
-
 elements identically. 
 
 One objection to the use of recursive functions is that they are inefficient, because 
@@ -711,99 +766,114 @@ the compiler has to allocate memory for each recursive call. This may be true fo
 function length9, but it is not necessarily true for all recursive calls. Consider the 
 following definition: 
 
-(defun length1O (list) 
-(length1O-aux list 0)) 
+```lisp
 
-(defun length1O-aux (sublist len-so-far) 
+(defun length10 (list)
+  (length10-aux list 0))
 
-(if (null sublist) 
-len-so-far 
-(length1O-aux (rest sublist) (+ 1 len-so-far)))) 
+(defun length10-aux (sublist len-so-far)
+  (if (null sublist)
+      len-so-far
+      (length10-aux (rest sublist) (+ 1 len-so-far))))
+```
 
-length1O uses length1O - aux as an auxiliary function, passing it 0 as the length of the 
-list so far. 1 engt hlO - a ux then goes down the list to the end, adding 1 for each element. 
-The invariant relation is that the length of the sublist plus 1 en- so - fa r always equals 
-the length of the original list. Thus, when the sublist is nil, then 1 en-so-f ar is the 
-length of the original list. Variables like 1 en- so - fa r that keep track of partial results 
-are called accumulators. Other examples of functions that use accumulators include 
-f 1 a tten - a 11 on page 329; one- un known on page 237; the Prolog predicates discussed 
-on page 686; and anonymous-variables-in on pages 400 and 433, which uses two 
+`length10` uses `length10-aux` as an auxiliary function, passing it 0 as the length of the 
+list so far. `length10-aux` then goes down the list to the end, adding 1 for each element. 
+The invariant relation is that the length of the sublist plus `len-so-far` always equals 
+the length of the original list. Thus, when the sublist is nil, then `len-so-far` is the 
+length of the original list. Variables like `len-so-far` that keep track of partial results 
+are called *accumulators*. Other examples of functions that use accumulators include 
+`flatten-all` on [page 329](chapter10.md#page-329); `one-unknown` on [page 237](chapter7.md#page-237); the Prolog predicates discussed 
+on [page 686](chapter20.md#page-686); and `anonymous-variables-in` on pages [page 400](chapter12.md#page-400) and [page 433](chapter12.md#page-433), which uses two 
 accumulators. 
 
-The important difference between length9 and length1O is when the addition 
-is done. In length9, the function calls itself, then returns, and then adds 1. In 
-length1O-aux, the function adds 1, then calls itself, then returns. There are no 
+The important difference between `length9` and `length10` is when the addition 
+is done. In `length9`, the function calls itself, then returns, and then adds 1. In 
+`length10-aux`, the function adds 1, then calls itself, then returns. There are no 
 pending operations to do after the recursive call returns, so the compiler is free to 
 release any memory allocated for the original call before making the recursive call. 
-length1O-aux is called a tail-recursive function, because the recursive call appears as 
+`length10-aux` is called a *tail-recursive* function, because the recursive call appears as 
 the last thing the function does (the tail). Many compilers will optimize tail-recursive 
 calls, although not all do. (Chapter 22 treats tail-recursion in more detail, and points 
 out that Scheme compilers guarantee that tail-recursive calls will be optimized.) 
 
-Some find it ugly to introduce length 10 - a ux. For them, there are two alternatives. 
+Some find it ugly to introduce `length10-aux`. For them, there are two alternatives. 
 
-First, we could combine length1O and length1O-aux into a single function with an 
-
+First, we could combine `length10` and `length10-aux` into a single function with an 
 optional parameter: 
 
-(defun length11 (list &optional (len-so-far 0)) 
-
-(if (null list) 
-len-so-far 
-(length11 (rest list) (+ 1 len-so-far)))) 
+```lisp
+(defun length11 (list &optional (len-so-far 0))
+  (if (null list)
+      len-so-far
+      (length11 (rest list) (+ 1 len-so-far))))
+```
 
 <a id='page-64'></a>
 
-Second, we could introduce a local function inside the definition of the main function. 
-This is done with the special form 1 abel s: 
+Second, we could introduce a *local* function inside the definition of the main function. 
+This is done with the special form `labels`: 
 
-(defun length12 (the-list) 
-(labels 
-((length13 (list len-so-far) 
+```lisp
 
-(if (null list) 
-len-so-far 
-(length1S (rest list) (+ 1 len-so-far))))) 
+(defun length12 (the-list)
+  (labels
+    ((length13 (list len-so-far)
+       (if (null list)
+           len-so-far
+           (length13 (rest list) (+ 1 len-so-far)))))
+    (length13 the-list 0)))
+```
 
-(length1S the-list 0))) 
-
-In general, a 1 abel s form (or the similar f 1 et form) can be used to introduce one or 
+In general, a `labels` form (or the similar `flet` form) can be used to introduce one or 
 more local functions. It has the following syntax: 
 
+```
 (labels 
+  ((function-name {parameter...) function-body)...) 
+  body-of-labels) 
+```
 
-((function-name {parameter...)function-body)...) 
-body-of-labels) 
-
-Other Special Forms 
+#### Other Special Forms 
 
 A few more special forms do not fit neatly into any category. We have already seen 
-the two special forms for creating constants and functions, quote and function. 
-These are so common that they have abbreviations: 'x for (quote x) and #'f for 
-(function f). 
+the two special forms for creating constants and functions, `quote` and `function`. 
+These are so common that they have abbreviations: `'x` for `(quote x)` and `#'f` for 
+`(function f)`. 
 
-The special form progn can be used to evaluate a sequence of forms and return 
+The special form `progn` can be used to evaluate a sequence of forms and return 
 the value of the last one: 
 
-(progn (setf . 0) (setf . (+ . D) .) 1 
+```lisp
+(progn (setf x 0) (setf x (+ x 1)) x) => 1 
+```
 
-progn is the equivalent of a begin.. .end block in other languages, but it is used 
+`progn` is the equivalent of a `begin...end` block in other languages, but it is used 
 very infrequently in Lisp. There are two reasons for this. First, programs written 
 in a functional style never need a sequence of actions, because they don't have side 
 effects. Second, even when side effects are used, many special forms allow for a 
-body which is a sequence—an implicit progn. I can only think of three places where 
-a progn is justified. First, to implement side effects in a branch of a two-branched 
-conditional, one could use either an i f with a progn, or a cond: 
+body which is a sequence—an implicit `progn`. I can only think of three places where 
+a `progn` is justified. First, to implement side effects in a branch of a two-branched 
+conditional, one could use either an `if` with a `progn`, or a `cond`: 
 
-(if (> X 100) (cond ((> . 100) 
-(progn (print "too big") (print "too big") 
-(setf X 100)) (setf . 100)) 
+```lisp
+(if (> x 100) 
+    (progn (print "too big") 
+           (setf x 100)) 
+    x) 
 
-X) (t X)) 
+(cond ((> x 100) 
+       (print "too big") 
+       (setf x 100)) 
+      (t x)) 
+```
+
 <a id='page-65'></a>
-If the conditional had only one branch, then when or unl ess should be used, since 
-they allow an implicit progn. If there are more than two branches, then cond should 
+If the conditional had only one branch, then `when` or `unless` should be used, since 
+they allow an implicit `progn`. If there are more than two branches, then `cond` should 
 be used. 
+
+## wip
 
 Second, progn is sometimes needed in macros that expand into more than one 
 top-level form, as in the defun* macro on page 326, section 10.3. Third, a progn is 
