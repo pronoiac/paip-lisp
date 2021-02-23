@@ -313,7 +313,7 @@ A doubly nested loop multiplies each coefficient of `p` and `q` and adds the `re
 
 Both `poly+poly` and `poly*poly` make use of the function `normalize-poly` to "normalize" the `result`.
 The idea is that `(- (^ 5) (^ x 5))` should return 0, not `#(x 0 0 0 0 0 0)`.
-Note that `normal` ize`-poly` is a destructive operation: it calls `delete,` which can actually alter its argument.
+Note that `normalize-poly` is a destructive operation: it calls `delete,` which can actually alter its argument.
 Normally this is a dangerous thing, but since `normalize-poly` is replacing something with its conceptual equal, no harm is done.
 
 ```lisp
@@ -388,7 +388,7 @@ Write a function to integrate polynomials and install it in `prefix->canon`.
 **Exercise  15.2 [m]** Add support for *definite* integrals, such as
 ![\int_{a}^{b} y\, dx](images/chapter15/si3_e.svg).
 You will need to make up a suitable notation and properly install it in both `infix->prefix` and `prefix->canon`.
-A full implementation of this feature would have to consider infinity as a bound, as well as the problem of integrating over singularises.
+A full implementation of this feature would have to consider infinity as a bound, as well as the problem of integrating over singularities.
 You need not address these problems.
 
 ## 15.3 Converting between Infix and Prefix
@@ -530,8 +530,8 @@ How much faster is the polynomial-based code than the rule-based version?
 Unfortunately, we can't answer that question directly.
 We can time `(simp ' ( (1 + x + y + z) ^ 15)))`.
 This takes only a tenth of a second, but that is because it is doing no work at all-the answer is the same as the input!
-Alternately, we can take the expression computed by `(poly^n r 15)`, convert it to prefix, and pass that `to simplify.
-simplify` takes 27.8 seconds on this, so the rule-based version is much slower.
+Alternately, we can take the expression computed by `(poly^n r 15)`, convert it to prefix, and pass that to `simplify`.
+`simplify` takes 27.8 seconds on this, so the rule-based version is much slower.
 [Section 9.6](B9780080571157500091.xhtml#s0035) describes ways to speed up the rule-based program, and a comparison of timing data appears on [page 525](#p525).
 
 There are always surprises when it comes down to measuring timing data.
@@ -557,8 +557,9 @@ If we use this version of `poly^n,` then `r15-test` takes 1.6 seconds instead of
 By the way, this is a perfect example of the conceptual power of recursive functions.
 We took an existing function, poly^n, added a single cond clause, and changed it from an *O*(*n*) to *O*(log *n*) algorithm.
 (This turned out to be a bad idea, but that's beside the point.
-It would be a good idea for raising integers to powers.) The reasoning that allows the change is simple: First, *pn* is certainly equal to (*p**n*/2)2 when *n* is even, so the change can't introduce any wrong answers.
-Second, the change continues the policy of decrementing *n* on every recursive call, so the function must eventually termina te (when *n =* 0).
+It would be a good idea for raising integers to powers.)
+The reasoning that allows the change is simple: First, *pn* is certainly equal to (*p n*/2)2 when *n* is even, so the change can't introduce any wrong answers.
+Second, the change continues the policy of decrementing *n* on every recursive call, so the function must eventually terminate (when *n =* 0).
 If it gives no wrong answers, and it terminates, then it must give the right answer.
 
 In contrast, making the change for an iterative algorithm is more complex.
@@ -605,7 +606,7 @@ for example,
 
 We can use this theorem to compute a power of a polynomial all at once, instead of computing it by repeated multiplication or squaring.
 Of course, a polynomial will in general be a sum of more than two components, so we have to decide how to split it into the *a* and *b* pieces.
-There are two obvious ways: either eut the polynomial in half, so that *a* and *b* will be of equal size, or split off one component at a time.
+There are two obvious ways: either cut the polynomial in half, so that *a* and *b* will be of equal size, or split off one component at a time.
 Fateman shows that the latter method is more efficient in most cases.
 In other words, a polynomial
 *k*<sub>1</sub>*x<sup>n</sup>* + *k*<sub>2</sub>*x<sup>n-1</sup>* + *k*<sub>3</sub>*x<sup>n-2</sup>* + ...
@@ -738,7 +739,7 @@ Polynomials are not closed under division, so `poly/poly` will return a rational
 
 ## 15.6 Extending Rational Expressions
 
-Now that we can divide polynomials, the final step is to reinstate the logarithmic, exponential, and trigonometrie functions.
+Now that we can divide polynomials, the final step is to reinstate the logarithmic, exponential, and trigonometric functions.
 The problem is that if we allow all these functions, we get into problems with canonical form again.
 For example, the following three expressions are all equivalent  :
 
@@ -767,7 +768,7 @@ A brief history of symbolic algebra systems is given in [chapter 8](B97800805711
 
 ## 15.8 Exercises
 
-**Exercise 15.7 [h]** Implement an extension of the rationals to include logarithmic, exponential, and trigonometrie functions.
+**Exercise 15.7 [h]** Implement an extension of the rationals to include logarithmic, exponential, and trigonometric functions.
 
 **Exercise 15.8 [m]** Modify `deriv` to handle the extended rational expressions.
 

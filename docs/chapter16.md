@@ -164,7 +164,7 @@ A and B => .9C
 to say that A and B imply C with .9 certainty.
 EMYCIN simply multiplies the rule's cf by the combined cf of the premise.
 So if A has cf .6 and B has cf .4, then the premise as a whole has cf .4 (the minimum of A and B), which is multiplied by .9 to get .36.
-The .36 is then combined with any exisiting cf for C.
+The .36 is then combined with any existing cf for C.
 If C is previously unknown, then combining .36 with 0 will give .36.
 If C had a prior cf of .76, then the new cf would be .36 + .76 - (.36 x .76) = .8464.
 
@@ -192,8 +192,8 @@ But if we only used the certainty factors `true` and `false`, then EMYCIN would 
 It is only when we provide fractional certainty factors that the additional EMYCIN mechanism makes a difference.
 
 Truth values actually serve two purposes in Prolog.
-They determine the final answer, yes, but they also determine when to eut off search: if any one of the premises of a rule is false, then there is no sense looking at the other premises.
-If in EMYCIN we only eut off the search when one of the premises was absolutely false, then we might have to search through a lot of rules, only to yield answers with very low certainty factors.
+They determine the final answer, yes, but they also determine when to cut off search: if any one of the premises of a rule is false, then there is no sense looking at the other premises.
+If in EMYCIN we only cut off the search when one of the premises was absolutely false, then we might have to search through a lot of rules, only to yield answers with very low certainty factors.
 Instead, EMYCIN arbitrarily cuts off the search and considers a premise false when it has a certainty factor below .2.
 The following functions support this arbitrary cutoff point:
 
@@ -1257,7 +1257,7 @@ Eventually, the need arose for a rule that said, "If any of the organisms in a c
 Implement a mechanism that keeps track of the author and date of creation of each rule, and allows the author to add documentation explaining the rationale for the rule.
 
 **Exercise  16.16 [m]** It is difficult to come up with the perfect prompt for each parameter.
-One solution is not to insist that one promptfits all users, but rather to allow the expert to supply three different prompts: a normal prompt, a verbose prompt (or reprompt) for when the user replies with a ?, and a terse prompt for the experienced user.
+One solution is not to insist that one prompt fits all users, but rather to allow the expert to supply three different prompts: a normal prompt, a verbose prompt (or reprompt) for when the user replies with a ?, and a terse prompt for the experienced user.
 Modify `defparm` to accommodate this concept, add a command for the user to ask for the terse prompts, and change `ask-vals` to use the proper prompt.
 
 The remaining exercises cover three additional replies the user can make: `how`, `stop`, and `change`.
