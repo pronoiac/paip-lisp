@@ -48,7 +48,7 @@ It turns out that the Lisp convention for arithmetic expressions is slightly dif
 This is called *prefix notation.*
 
 ```lisp
-> (+  2 2)
+> (+ 2 2)
 4
 >
 ```
@@ -62,7 +62,7 @@ Of course, with symbols like + and 4 there is no difference.
 To save space on the page, the output will sometimes be shown on the same line as the input, separated by an arrow (=>), which can be read as "evaluates to," and can also be thought of as standing for the return or enter key that the user presses to complete the input:
 
 ```lisp
-> (+  2 2) => 4
+> (+ 2 2) => 4
 ```
 
 One advantage of parenthesized prefix notation is that the parentheses clearly mark the beginning and end of an expression.
@@ -72,7 +72,7 @@ If we want, we can give + more than two arguments, and it will still add them al
 > (+ 1 2 3 4 5 6 7 8 9 10) => 55
 ```
 
-This time we try (9000 + 900 + 90  + 9) - (5000 + 500 + 50 + 5):
+This time we try (9000 + 900 + 90 + 9) - (5000 + 500 + 50 + 5):
 
 ```lisp
 > (- (+ 9000 900 90 9) (+ 5000 500 50 5)) => 4444
@@ -88,7 +88,7 @@ We will see below that the actual Lisp evaluation rule is a little more complica
 Sometimes programmers who are familiar with other languages have preconceptions that make it difficult for them to learn Lisp.
 For them, three points are worth stressing here.
 First, many other languages make a distinction between statements and expressions.
-An expression, like `2 + 2`, has a value, but a statement, like `x  = 2 + 2`, does not.
+An expression, like `2 + 2`, has a value, but a statement, like `x = 2 + 2`, does not.
 Statements have effects, but they do not return values.
 In Lisp, there is no such distinction: every expression returns a value.
 It is true that some expressions have effects, but even those expressions also return values.
@@ -151,9 +151,9 @@ Here are some examples:
 
 > 2 => 2
 
-> '(+  2 2) => (+  2 2)
+> '(+ 2 2) => (+ 2 2)
 
-> (+  2 2) 4
+> (+ 2 2) 4
 
 > John => *Error: JOHN is not a bound variable*
 
@@ -236,8 +236,8 @@ First, Lisp's syntactic forms are always lists in which the first element is one
 Second, special forms are expressions that return a value.
 This is in contrast to statements in most languages, which have an effect but do not return a value.
 
-In evaluating an to expression *(ed note: ???)* like `(setf x (+  1 2)`), we set the variable named by the symbol `x` to the value of `(+  1 2)`, which is `3`.
-If `setf` were a normal function, we would evaluate both the symbol `x` and the expression `(+  1 2)` and do something with these two values, which is not what we want at all.
+In evaluating an expression like `(setf x (+ 1 2)`), we set the variable named by the symbol `x` to the value of `(+ 1 2)`, which is `3`.
+If `setf` were a normal function, we would evaluate both the symbol `x` and the expression `(+ 1 2)` and do something with these two values, which is not what we want at all.
 `setf` is called a special form because it does something special: if it did not exist, it would be impossible to write a function that assigns a value to a variable.
 The philosophy of Lisp is to provide a small number of special forms to do the things that could not otherwise be done, and then to expect the user to write everything else as functions.
 
@@ -246,7 +246,7 @@ In the book *Common LISPcraft,* Wilensky resolves the ambiguity by calling `setf
 This terminology implies that `setf` is just another function, but a special one in that its first argument is not evaluated.
 Such a view made sense in the days when Lisp was primarily an interpreted language.
 The modern view is that `setf` should not be considered some kind of abnormal function but rather a marker of special syntax that will be handled specially by the compiler.
-Thus, the special form `(setf x (+  2 1))` should be considered the equivalent of `x = 2 + 1` in `C`.
+Thus, the special form `(setf x (+ 2 1))` should be considered the equivalent of `x = 2 + 1` in `C`.
 When there is risk of confusion, we will call `setf` a *special form operator* and `(setf x 3)` a *special form expression.*
 
 It turns out that the quote mark is just an abbreviation for another special form.
@@ -721,7 +721,7 @@ The alternate definition of `mappend` shown in the following doesn't make use of
 > (funcall #' + '(2 3)) => *Error: (2 3) is not a number.*
 ```
 
-These are equivalent to `(+  2 3), (+ 2 3)`,and`(+ '(2 3))`, respectively.
+These are equivalent to `(+ 2 3), (+ 2 3)`,and`(+ '(2 3))`, respectively.
 
 So far, every function we have used has been either predefined in Common Lisp or introduced with a `defun`, which pairs a function with a name.
 It is also possible to introduce a function without giving it a name, using the special syntax `lambda`.
@@ -834,14 +834,14 @@ Similarly, the notation `#'f` is an abbreviation for the special form expression
 
 defun twice (x) (+ x x)) => TWICE
 
-(if (=  2 3) (error) (+  5 6)) => 11
+(if (= 2 3) (error) (+ 5 6)) => 11
 ```
 
 *   A *function application* is evaluated by first evaluating the arguments (the rest of the list) and then finding the function named by the first element of the list and applying it to the list of evaluated arguments.
 
 ```lisp
-(+  2 3) => 5
-(- (+  90 9) (+  50 5 (length '(Pat Kim)))) => 42
+(+ 2 3) => 5
+(- (+ 90 9) (+ 50 5 (length '(Pat Kim)))) => 42
 ```
 
 Note that if `'(Pat Kim)` did not have the quote, it would betreated as a function application of the function `pat` to the value of the variable `kim.`
