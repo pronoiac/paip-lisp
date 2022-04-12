@@ -1,41 +1,43 @@
 # diagrams test
 
-## original
+## 12pt png
 This corresponds to the tree that linguists draw as in figure 2.1.
 
 | []() |
 |---|
-| ![Figure 2.1: Sentence Parse Tree](images/chapter2/f02-01.jpg) |
+| ![Figure 2.1: Sentence Parse Tree](images/chapter2/fig-02-01-12pt.drawio.png) |
 | **Figure 2.1: Sentence Parse Tree** |
 
 Using the "straightforward functions" approach we would be stuck; we'd have to rewrite every function to generate the additional structure.
 
-## png
+## 16pt png
 This corresponds to the tree that linguists draw as in figure 2.1.
 
 | []() |
 |---|
-| ![Figure 2.1: Sentence Parse Tree](images/chapter2/fig-02-01.png) |
+| ![Figure 2.1: Sentence Parse Tree](images/chapter2/fig-02-01-16pt.drawio.png) |
 | **Figure 2.1: Sentence Parse Tree** |
 
 Using the "straightforward functions" approach we would be stuck; we'd have to rewrite every function to generate the additional structure.
 
-## svg
+## svg, embedded font
 This corresponds to the tree that linguists draw as in figure 2.1.
 
 | []() |
 |---|
-| ![Figure 2.1: Sentence Parse Tree](images/chapter2/fig-02-01.svg) |
+| ![Figure 2.1: Sentence Parse Tree](images/chapter2/fig-02-01-16pt-embed.drawio.svg) |
 | **Figure 2.1: Sentence Parse Tree** |
 
 Using the "straightforward functions" approach we would be stuck; we'd have to rewrite every function to generate the additional structure.
 
-## svg, with png fallback
+## svg, text converted to svg
+> I *think* this changes text to lines and curves
+
 This corresponds to the tree that linguists draw as in figure 2.1.
 
 | []() |
 |---|
-| <img src="images/chapter2/fig-02-01.svg" onerror="this.src='images/chapter2/fig-02-01.png'; this.onerror=null;" alt="T_{n}=F_{n}\frac{T_{i}}{F_{i}}"> |
+| ![Figure 2.1: Sentence Parse Tree](images/chapter2/fig-02-01-16pt-converted.drawio.svg) |
 | **Figure 2.1: Sentence Parse Tree** |
 
 Using the "straightforward functions" approach we would be stuck; we'd have to rewrite every function to generate the additional structure.
