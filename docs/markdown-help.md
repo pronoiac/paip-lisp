@@ -36,6 +36,17 @@ It looks like two trailing spaces do the trick in both Github Flavored Markdown 
 > -Giovanni Battista Vico (1668-1744)  
 > Italian royal historiographer 
 
+## Pseudocode blocks
+We want to describe some pseudocode, with italicized placeholders.
+Let's try the html pre tag!
+
+<pre>
+function first-name(name):
+    if *the first element of name is a title*
+        then *return the* first-name *of the rest of the name*
+        else *return the first element of the name*
+</pre>
+
 
 ## Special symbols
 There are a lot of special symbols, with special ways of calling them; there's [a Wikipedia page with a list.](https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references) Here are some of the common ones: 
