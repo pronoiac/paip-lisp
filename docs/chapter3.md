@@ -501,7 +501,7 @@ Because it is so unspecific, `do` will not be used much in this book.
 However, many good programmers use it, so it is important to know how to read `do` loops, even if you decide never to write one.
 
 The syntax of `loop` is an entire language by itself, and a decidedly non-Lisp-like language it is.
-Rather than list all the possibilities for `loop`, we will just give examples here, and refer the reader to *Common Lisp the Language*, 2d edition, or chapter 24.5 for more details.
+Rather than list all the possibilities for `loop`, we will just give examples here, and refer the reader to *Common Lisp the Language*, 2d edition, or [section 24.5](chapter24.md#section_24.5) for more details.
 Here are three versions of `length` using `loop`:
 
 ```lisp
