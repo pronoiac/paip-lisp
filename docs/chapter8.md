@@ -391,7 +391,7 @@ SIMPLIFIER > (3 * x + 4 * x)
 ((3 * X) + (4 * X))
 ```
 
-We will return to these problems in [section 8.5](#s0030).
+We will return to these problems in [section 8.5](#section_8.5).
 
 **Exercise 8.1** Verify that the set of rules just prior does indeed implement the desired conventions, and that the conventions have the proper effect, and always terminate.
 As an example of a potential problem, what would happen if we used the rule `(x * n = n * x)` instead of the rule `(s * n = n * s)`?
@@ -924,7 +924,7 @@ The mathematical solution to the problem of integration in closed term is addres
 A better reference is [Davenport et al.
 1988](bibliography.md#bb0270).
 
-In this book, techniques for improving the efficiency of algebraic manipulation are covered in [sections 9.6](chapter9.md#s0035) and [10.4](chapter10.md#s0025).
+In this book, techniques for improving the efficiency of algebraic manipulation are covered in [sections 9.6](chapter9.md#section_9.6) and [10.4](chapter10.md#section_10.4).
 [Chapter 15](chapter15.md) presents a reimplementation that does not use pattern-matching, and is closer to the techniques used in MACSYMA.
 
 ## 8.8 Exercises

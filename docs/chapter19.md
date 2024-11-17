@@ -278,7 +278,7 @@ Here we see a phrase that is ambiguous between a sentence and a noun phrase:
 With more complex grammars and longer sentences, the parser starts to slow down.
 The main problem is that it keeps repeating work.
 For example, in parsing "The man hit the table with the ball," it has to reparse "with the ball" for both of the resulting parses, even though in both cases it receives the same analysis, a PP.
-We have seen this problem before and have already produced an answer: memoization (see [section 9.6](#s0035)).
+We have seen this problem before and have already produced an answer: memoization (see [section 9.6](#section_9.6)).
 To see how much memoization will help, we need a benchmark:
 
 ```lisp
@@ -976,7 +976,7 @@ However, we could change the scorer for "without" to test for `sub-bag-p` (not a
 ## 19.7 The Problem with Context-Free Phrase-Structure Rules
 <a id="section_19.7"></a>
 
-The fragment of English grammar we specified in [section 19.2](#s0015) admits a variety of ungrammatical phrases.
+The fragment of English grammar we specified in [section 19.2](#section_19.2) admits a variety of ungrammatical phrases.
 For example, it is equally happy with both "I liked her" and "me liked she." Only the first of these should be accepted; the second should be ruled out.
 Similarly, our grammar does not state that verbs have to agree with their subjects in person and number.
 And, since the grammar has no notion of meaning, it will accept sentences that are semantically anomalous (or at least unusual), such as "the table liked the man."

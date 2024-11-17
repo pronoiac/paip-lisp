@@ -175,7 +175,7 @@ The following function is handy for this purpose:
 ```
 
 **Diagnosis:** Are you using `labels` and `flet` properly?
-Consider again the function `replace-?-vars`, which was defined in [section 11.3](chapter11.md#s0025) to replace an anonymous logic variable with a unique new variable.
+Consider again the function `replace-?-vars`, which was defined in [section 11.3](chapter11.md#section_11.3) to replace an anonymous logic variable with a unique new variable.
 
 ```lisp
 (defun replace-?-vars (exp)
@@ -591,7 +591,7 @@ To avoid this problem, use `let*` whenever a variable's initial binding refers t
 ## 25.14 Problems with Macros
 <a id="section_25.14"></a>
 
-In [section 3.2](chapter3.md#s0015) we described a four-part approach to the design of macros:
+In [section 3.2](chapter3.md#section_3.2) we described a four-part approach to the design of macros:
 
 *   Decide if the macro is really necessary.
 
@@ -1057,7 +1057,7 @@ Each module is a list consisting of the module name (a symbol) followed by a one
 We have used keywords as the module names to eliminate any possible name conflicts, but any symbol could be used.
 
 7.  The call to `defpackage` defines the package `project-x`.
-For more on packages, see section 24.1.
+For more on packages, see [section 24.1](chapter24#section_24.1).
 
 8.  The final form prints instructions on how to load and run the system.
 

@@ -863,7 +863,7 @@ We should be doing all we can to make the rules simpler, not more complicated; t
 This suggests a third approach: change the rule interpreter so that it automatically generates the semantic interpretation as a conjunction of the constituents, unless the rule explicitly says otherwise.
 This section shows how to augment the DCG rules to handle common cases like this automatically.
 
-Consider again a rule from [section 20.4](#s0025):
+Consider again a rule from [section 20.4](#section_20.4):
 
 ```lisp
 (rule (S (and ?np ?vp)) -->
@@ -1176,9 +1176,7 @@ and here we define `handle-conj` to substitute `S_` for `S` in the left-hand sid
 As we have mentioned, Alain Colmerauer invented Prolog to use in his grammar of French (1973).
 His *metamorphosis grammar* formalism was more expressive but much less efficient than the standard DCG formalism.
 
-The grammar in [section 20.4](#s0025) is essentially the same as the one presented in Fernando Pereira and David H.
-D.
-Warren's 1980 paper, which introduced the Definite Clause Grammar formalism as it is known today.
+The grammar in [section 20.4](#section_20.4) is essentially the same as the one presented in Fernando Pereira and David H. D. Warren's 1980 paper, which introduced the Definite Clause Grammar formalism as it is known today.
 The two developed a much more substantial grammar and used it in a very influential question-answering system called Chat-80 ([Warren and Pereira, 1982](bibliography.md#bb1340)).
 Pereira later teamed with Stuart Shieber on an excellent book covering logic grammars in more depth: *Prolog and Natural-Language Analysis* (1987).
 The book has many strong points, but unfortunately it does not present a grammar anywhere near as complete as the Chat-80 grammar.
@@ -1186,7 +1184,7 @@ The book has many strong points, but unfortunately it does not present a grammar
 The idea of a compositional semantics based on mathematical logic owes much to the work of the late linguist Richard Montague.
 The introduction by [Dowty, Wall, and Peters (1981)](bibliography.md#bb0335) and the collection by [Rich Thomason (1974)](bibliography.md#bb1235) cover Montague's approach.
 
-The grammar in [section 20.5](#s0030) is based loosely on Michael McCord's modular logic grammar, as presented in [Walker et al.
+The grammar in [section 20.5](#section_20.5) is based loosely on Michael McCord's modular logic grammar, as presented in [Walker et al.
 1990](bibliography.md#bb1295).
 
 It should be noted that logic grammars are by no means the only approach to natural language processing.
@@ -1204,7 +1202,7 @@ The analysis is more important than the notation, as it should be.
 ## 20.9 Exercises
 <a id="section_20.9"></a>
 
-**Exercise  20.2 [m]** Modify the grammar (from [section 20.4](#s0025), [20.5](#s0030), [or 20.6](#s0035)) to allow for adjectives before a noun.
+**Exercise  20.2 [m]** Modify the grammar (from [section 20.4](#section_20.4), [20.5](#section_20.5), [or 20.6](#section_20.6)) to allow for adjectives before a noun.
 
 **Exercise  20.3 [m]** Modify the grammar to allow for prepositional phrase modifiers on verb and noun phrases.
 

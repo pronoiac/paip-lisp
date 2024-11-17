@@ -302,7 +302,7 @@ Then programmers who want to extend the matcher just add entries to the table, a
 This style of programming, where pattern/action pairs are stored in a table, is called *data*-*driven programming*.
 It is a very flexible style that is appropriate for writing extensible systems.
 
-There are many ways to implement tables in Common Lisp, as discussed in [section 3.6](chapter3.md#s0080), [page 73](chapter3.md#p73).
+There are many ways to implement tables in Common Lisp, as discussed in [section 3.6](chapter3.md#section_3.6), [page 73](chapter3.md#p73).
 In this case, the keys to the table will be symbols  (like `?*`), and it is fine if the representation of the table is distributed across memory.
 Thus, property lists are an appropriate choice.
 We will have two tables, represented by the `segment-match` property and the `single-match` property of symbols like `?*`.
