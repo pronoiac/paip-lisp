@@ -109,7 +109,7 @@ Then we should conclude that 100% have it, because the two tests cover the entir
 On the other hand, if the first test is positive only for patients that are 70 years old or older, and the second is positive only for patients that are 80 or older, then the second is just a subset of the first.
 This adds no new information, so the correct answer is 60% in this case.
 
-In [section 16.9](#s0050) we will consider ways to take this kind of reasoning into account.
+In [section 16.9](#section_16.9) we will consider ways to take this kind of reasoning into account.
 For now, we will present the combination method actually used in EMYCIN.
 It is defined by the formula:
 

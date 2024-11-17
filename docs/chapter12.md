@@ -115,7 +115,7 @@ Each symbol/arity is compiled into a separate Lisp function by `compile-predicat
 | `bind-new-variables`        | Extend bindings to include any unbound variables.          |
 | `ignore`                    | Do nothing&mdash;ignore the arguments.                     |
 |                             | **Previously Defined Functions**                           |
-| `unify!`                    | Destructive unification (see section 11.6)                 |
+| `unify!`                    | Destructive unification (see [section 11.6](chapter11.md#section_11.6))                 |
 | `undo-bindings!`            | Use the trail to backtrack, undoing bindings.              |
 | `binding-val`               | Pick out the value part of a var/val binding.              |
 | `symbol`                    | Create or find an interned symbol.                         |
@@ -896,7 +896,7 @@ This change should speed execution time and limit the amount of garbage generate
 Of course, it makes the generated code longer, so that could slow things down if the program ends up spending too much time bringing the code to the processor.
 
 **Exercise  12.1 [h]** Write definitions for `consp-or-variable-p, unify-first!,` and `unify-rest!`, and change the compiler to generate code like that outlined previously.
-You might want to look at the function `compile-rule` in [section 9.6](chapter9.md#s0035), starting on [page 300](chapter9.md#p300).
+You might want to look at the function `compile-rule` in [section 9.6](chapter9.md#section_9.6), starting on [page 300](chapter9.md#p300).
 This function compiled a call to `pat-match` into individual tests; now we want to do the same thing to `unify!`.
 Run some benchmarks to compare the altered compiler to the original version.
 

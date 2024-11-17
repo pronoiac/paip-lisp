@@ -368,7 +368,7 @@ The final three syntactic extensions are unique to Scheme:
 In its first form, it assigns a value to a variable.
 Since there are no special variables in Scheme, this is no different than using `set!`.
 (There is a difference when the `define` is nested inside another definition, but that is not yet considered.) In the second form, it defines a function.
-`delay` is used to delay evaluation, as described in [section 9.3](chapter9.md#s0020), page 281.
+`delay` is used to delay evaluation, as described in [section 9.3](chapter9.md#section_9.3), page 281.
 `letrec` is similar to `let`.
 The difference is that all the *init* forms are evaluated in an environment that includes all the *vars*.
 Thus, `letrec` can be used to define local recursive functions, just as `labels` does in Common Lisp.

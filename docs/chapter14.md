@@ -488,7 +488,7 @@ The solutions to the three problems-expressiveness, completeness, and indexing-w
 
 A better solution to the phone-book problem is to index each phone-book entry in some kind of table that makes it easy to add, delete, and retrieve entries.
 That is what we will do in this section.
-We will develop an extension of the trie or discrimination tree data structure built in [section 10.5](chapter10.md#s0030) ([page 344](chapter10.md#p344)).
+We will develop an extension of the trie or discrimination tree data structure built in [section 10.5](chapter10.md#section_10.5) ([page 344](chapter10.md#p344)).
 
 Making a discrimination tree for Prolog facts is complicated by the presence of variables in both the facts and the query.
 Either facts with variables in them will have to be indexed in several places, or queries with variables will have to look in several places, or both.
@@ -800,7 +800,7 @@ Now let's stop and see what we have accomplished.
 The functions `fetch and dtree-fetch` fulfill their contract of returning potential matches.
 However, we still need to integrate the dtree facility with Prolog.
 We need to go through the potential matches and determine which candidates are actual matches.
-For simplicity we will use the version of `unify` with binding lists defined in [section 11.2](chapter11.md#s0020).
+For simplicity we will use the version of `unify` with binding lists defined in [section 11.2](chapter11.md#section_11.2).
 (It is also possible to construct a more efficient version that uses the compiler and the destructive function `unify!`.)
 
 The function `mapc-retrieve` calls `fetch` to get a list-of-lists of potential matches and then calls `unify` to see if the match is a true one.
@@ -1566,7 +1566,7 @@ We could also add a *truth maintenance system* (or TMS) to keep track of the ass
 A truth maintenance system can lessen the need to backtrack in a search for a global solution.
 Although truth maintenance systems are an important part of AI programming, they will not be covered in this book.
 
-In this section we extend the dtree facility ([section 14.8](#s0045)) to handle truth values and possible worlds.
+In this section we extend the dtree facility ([section 14.8](#section_14.8)) to handle truth values and possible worlds.
 With so many options, it is difficult to make design choices.
 We will choose a fairly simple system, one that remains close to the simplicity and speed of Prolog but offers additional functionality when needed.
 We will adopt approach (2c) to truth values, using negated predicates.
@@ -1790,7 +1790,7 @@ Here we see that the facts entered in `W7031` are not accessible, but the facts 
 
 ### Unification, Equality, Types, and Skolem Constants
 
-The lesson of the zebra puzzle in [section 11.4](chapter11.md#s0040) was that unification can be used to lessen the need for backtracking, because an uninstantiated logic variable or partially instantiated term can stand for a whole range of possible solutions.
+The lesson of the zebra puzzle in [section 11.4](chapter11.md#section_11.4) was that unification can be used to lessen the need for backtracking, because an uninstantiated logic variable or partially instantiated term can stand for a whole range of possible solutions.
 However, this advantage can quickly disappear when the representation forces the problem solver to enumerate possible solutions rather than treating a whole range of solutions as one.
 For example, consider the following query in the frame language and its expansion into primitives:
 
@@ -1837,7 +1837,7 @@ In his term, they lack *vividness.* A vivid proposition is one that could be rep
 Nonvivid propositions cannot be so represented: the car is not blue; she has a martini in one hand; either Albany or New York City is the capital of New York.
 There is interest in separating vivid from nonvivid reasoning, but no current systems are actually built this way.
 
-The possible world approach of [section 14.10](#s0055) was used in the MRS system ([Russell 1985](bibliography.md#bb1020)).
+The possible world approach of [section 14.10](#section_14.10) was used in the MRS system ([Russell 1985](bibliography.md#bb1020)).
 More recent knowledge representation systems tend to use truth maintenance systems instead of possible worlds.
 This approach was pioneered by [Doyle (1979)](bibliography.md#bb0340) and [McAllester (1982)](bibliography.md#bb0785).
 Doyle tried to change the name to "reason maintenance,' in (1983), but it was too late.
@@ -1880,7 +1880,7 @@ Use the dtrees for predicates with a large number of clauses, and make sure that
 **Exercise  14.8 [d]** Add support for possible worlds to the Prolog compiler with dtrees.
 This support has already been provided for dtrees, but you will have to provide it for ordinary Prolog rules.
 
-**Exercise  14.9 [h]** Integrate the language described in [section 14.10](#s0055) and the frame syntax from [section 14.10](#s0055) with the extended Prolog compiler from the previous exercise.
+**Exercise  14.9 [h]** Integrate the language described in [section 14.10](#section_14.10) and the frame syntax from [section 14.10](#section_14.10) with the extended Prolog compiler from the previous exercise.
 
 **Exercise  14.10 [d]** Build a strategic reasoner that decides when to create a possible world and does reasoning by cases over these worlds.
 Use it to solve Moore's problem ([page 466](#p466)).

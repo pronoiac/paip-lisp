@@ -790,7 +790,7 @@ Just as it is clearer to write `(a+b)*(c+d)` rather than to invent variable name
 
 Second, and more importantly, lambda expressions make it possible to create new functions at run time.
 This is a powerful technique that is not possible in most programming languages.
-These run-time functions, known as *closures,* will be covered in section 3.16.
+These run-time functions, known as *closures,* will be covered in [section 3.16](chapter3.md#section_3.16).
 
 ## 1.8 Other Data Types
 <a id="section_1.8"></a>
@@ -1012,7 +1012,7 @@ They can tell you that you are mistakenly passing a string to a function that ex
 A *first-class* object is one that can be used anywhere and can be manipulated in the same ways as any other kind of object.
 In Pascal or C, for example, functions can be passed as arguments to other functions, but they are not first-class, because it is not possible to create new functions while the program is running, nor is it possible to create an anonymous function without giving it a name.
 In Lisp we can do both those things using `lambda`.
-This is explained in section 3.16, page 92.
+This is explained in [section 3.16](chapter3.md#section_3.16), page 92.
 
 *   *Uniform Syntax.*
 The syntax of Lisp programs is simple.

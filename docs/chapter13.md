@@ -578,7 +578,7 @@ But once the writer function is defined it can be used anywhere, so an unscrupul
 <a id="section_13.8"></a>
 
 CLOS is most appropriate whenever there are several types that share related behavior.
-A good example of an application that fits this description is the set of searching tools defined in [section 6.4](chapter6.md#s0025).
+A good example of an application that fits this description is the set of searching tools defined in [section 6.4](chapter6.md#section_6.4).
 There we defined functions for breadth-first, depth-first, and best-first search, as well as tree- and graph-based search.
 We also defined functions to search in particular domains, such as planning a route between cities.
 
@@ -597,7 +597,7 @@ The basic class, `problem`, contains a single-instance variable to hold the unex
  ((states :initarg :states :accessor problem-states)))
 ```
 
-The function searcher is similar to the function `tree-search` of [section 6.4](chapter6.md#s0025).
+The function searcher is similar to the function `tree-search` of [section 6.4](chapter6.md#section_6.4).
 The main difference is that searcher uses generic functions instead of passing around functional arguments.
 
 ```lisp
@@ -674,7 +674,7 @@ But Lisp provides such nice list-manipulation primitives that it is difficult to
 Of course, the user who defines a new implementation for `problem-states` could just redefine `problem-combiner` for the offending classes, but this is precisely what object-oriented programming is designed to avoid: specializing one abstraction (states) should not force us to change anything in another abstraction (search strategy).
 
 The last step is to define a class that represents a particular domain, and define `problem-successors` for that domain.
-As the first example, consider the simple binary tree search from [section 6.4](chapter6.md#s0025).
+As the first example, consider the simple binary tree search from [section 6.4](chapter6.md#section_6.4).
 Naturally, this gets represented as a class:
 
 ```lisp
@@ -769,7 +769,7 @@ As usual, we have to make up another class to represent this type of problem:
 ```
 
 So far the case for CLOS has not been compelling.
-The code in this section duplicates the functionality of code in [section 6.4](chapter6.md#s0025), but the CLOS code tends to be more verbose, and it is somewhat disturbing that we had to make up so many long class names.
+The code in this section duplicates the functionality of code in [section 6.4](chapter6.md#section_6.4), but the CLOS code tends to be more verbose, and it is somewhat disturbing that we had to make up so many long class names.
 However, this verbosity leads to flexibility, and it is easier to extend the CLOS code by adding new specialized classes.
 It is useful to make a distinction between the systems programmer and the applications programmer.
 The systems programmer would supply a library of classes like `dfs-problem` and generic functions like `searcher`.

@@ -437,7 +437,7 @@ An alternative function-calling protocol involves pushing the return address bef
 Such an optimization looks like a small gain; we basically eliminate a single instruction.
 In fact, the implications of this new protocol are enormous: we can now invoke a recursive function to an arbitrary depth without growing the stack at all-as long as the recursive call is the last statement in the function (or in a branch of the function when there are conditionals).
 A function that obeys this constraint on its recursive calls is known as a *properly tail-recursive* function.
-This subject was discussed in [section 22.3.](chapter22.md#s0020)
+This subject was discussed in [section 22.3.](chapter22.md#section_22.3)
 
 All the examples so far have only dealt with global variables.
 Here's an example using local variables:
@@ -937,7 +937,7 @@ The function `init-scheme-comp` takes care of this requirement:
 
 There is one more change to make-rewriting `comp-lambda`.
 We still need to get the arguments off the stack, but we no longer generate a `RETURN` instruction, since that is done by `comp-begin`, if necessary.
-At this point we'll provide a hook for a peephole optimizer, which will be introduced in [section 23.4](#s0025), and for an assembler to convert the assembly language to machine code, `new-fn` provides this interface, but for now, `new-fn` acts just like `make-fn`.
+At this point we'll provide a hook for a peephole optimizer, which will be introduced in [section 23.4](#section_23.4), and for an assembler to convert the assembly language to machine code, `new-fn` provides this interface, but for now, `new-fn` acts just like `make-fn`.
 
 We also need to account for the possibility of rest arguments in a lambda list.
 A new function, `gen-rgs`, generates the single instruction to load the arguments of the stack.

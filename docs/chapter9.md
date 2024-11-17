@@ -551,12 +551,12 @@ The grammar writer has to make sure he or she is not using the name of an existi
 Even worse, if more than one grammar is being developed at the same time, they cannot have any functions in common.
 If they do, the user will have to recompile with every switch from one grammar to another.
 This may make it difficult to compare grammars.
-The best away around this problem is to use the Common Lisp idea of *packages*, but for small exercises name clashes can be avoided easily enough, so we will not explore packages until [section 24.1](chapter24.md#s0010).
+The best away around this problem is to use the Common Lisp idea of *packages*, but for small exercises name clashes can be avoided easily enough, so we will not explore packages until [section 24.1](chapter24.md#section_24.1).
 
 The major advantage of a compiler is speed of execution, when that makes a difference.
 For identical grammars running in one particular implementation of Common Lisp on one machine, our interpreter generates about 75 sentences per second, while the compiled approach turns out about 200.
 Thus, it is more than twice as fast, but the difference is negligible unless we need to generate many thousands of sentences.
-In [section 9.6](#s0035) we will see another compiler with an even greater speed-up.
+In [section 9.6](#section_9.6) we will see another compiler with an even greater speed-up.
 
 The need to optimize the code produced by your macros and compilers ultimately depends on the quality of the underlying Lisp compiler.
 For example, consider the following code:
@@ -941,7 +941,7 @@ Picking the right data structure and algorithm is as important in Lisp as it is 
 Even though Lisp offers a wide variety of data structures, it is often worthwhile to spend some effort on building just the right data structure for frequently used data.
 For example, Lisp's hash tables are very general and thus can be inefficient.
 You may want to build your own hash tables if, for example, you never need to delete elements, thus making open hashing an attractive possibility.
-We will see an example of efficient indexing in [section 9.6](#s0035) ([page 297](chapter9.md#p297)).
+We will see an example of efficient indexing in [section 9.6](#section_9.6) ([page 297](chapter9.md#p297)).
 
 ## 9.5 Instrumentation: Deciding What to Optimize
 <a id="section_9.5"></a>

@@ -1538,7 +1538,7 @@ The advisability of this approach depends on the implementation, and so it is no
 ## 18.11 Killer Moves
 <a id="section_18.11"></a>
 
-In [section 18.9](#s0050), we considered the possibility of searching moves in a different order, in an attempt to search the better moves first, thereby getting more alpha-beta pruning.
+In [section 18.9](#section_18.9), we considered the possibility of searching moves in a different order, in an attempt to search the better moves first, thereby getting more alpha-beta pruning.
 In this section, we consider the *killer heuristic,* which states that a move that has proven to be a good one in one line of play is also likely to be a good one in another line of play.
 To use chess as perhaps a more familiar example, suppose I consider one move, and it leads to the opponent replying by capturing my queen.
 This is a killer move, one that I would like to avoid.
@@ -2111,7 +2111,7 @@ It can consider more than one move by the opponent, depending on how much time i
 ### Hashing and Opening Book Moves
 
 We have been treating the search space as a tree, but in general it is a directed acyclic graph (dag): there may be more than one way to reach a particular position, but there won't be any loops, because every move adds a new piece.
-This raises the question we explored briefly in [section 6.4](chapter6.md#s0025): should we treat the search space as a tree or a graph?
+This raises the question we explored briefly in [section 6.4](chapter6.md#section_6.4): should we treat the search space as a tree or a graph?
 By treating it as a graph we eliminate duplicate evaluations, but we have the overhead of storing all the previous positions, and of checking to see if a new position has been seen before.
 The decision must be based on the proportion of duplicate positions that are actually encountered in play.
 One compromise solution is to store in a hash table a partial encoding of each position, encoded as, say, a single fixnum (one word) instead of the seven or so words needed to represent a full board.
@@ -2233,12 +2233,12 @@ What other efficiency measures can you take?
 
 **Exercise  18.6 [h]** Implement an iterative deepening search that allocates time for each move and checks between each iteration if the time is exceeded.
 
-**Exercise  18.7 [h]** Implement zero-window search, as described in [section 18.13](#s0085).
+**Exercise  18.7 [h]** Implement zero-window search, as described in [section 18.13](#section_18.13).
 
 **Exercise  18.8 [d]** Read the references on Bill ([Lee and Mahajan 1990](bibliography.md#bb0715), and [1986](bibliography.md#bb0710) if you can get it), and reimplement Bill's evaluation function as best you can, using the table-based approach.
 It will also be helpful to read [Rosenbloom 1982](bibliography.md#bb1000).
 
-**Exercise  18.9 [d]** Improve the evaluation function by tuning the parameters, using one of the techniques described in [section 18.13](#s0085).
+**Exercise  18.9 [d]** Improve the evaluation function by tuning the parameters, using one of the techniques described in [section 18.13](#section_18.13).
 
 **Exercise  18.10 [h]** Write move-generation and evaluation functions for another game, such as chess or checkers.
 

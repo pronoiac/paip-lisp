@@ -995,7 +995,7 @@ The following code defines a set of operators for mazes in general, and for this
 ```
 
 Note the backquote notation, ( ' ).
-It is covered in [section 3.2](chapter3.md#s0020), [page 67](chapter3.md#p67).
+It is covered in [section 3.2](chapter3.md#section_3.2), [page 67](chapter3.md#p67).
 
 We can now use this list of operators to solve several problems with this maze.
 And we could easily create another maze by giving another list of connections.

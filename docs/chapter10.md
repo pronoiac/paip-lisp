@@ -1313,7 +1313,7 @@ In contrast, fetching with the pattern `??llow` is much less efficient.
 The table lookup function would have to search all 26 top-level branches, and for each of those consider all possible second letters, and for each of those consider the path `llow`.
 Quite a bit of searching is required before arriving at the complete set of matches: bellow, billow, fallow, fellow, follow, hallow, hollow, mallow, mellow, pillow, sallow, tallow, wallow, willow, and yellow.
 
-We will return to the problem of discrimination nets with variables in [section 14.8](chapter14.md#s0040), [page 472](chapter14.md#p472).
+We will return to the problem of discrimination nets with variables in [section 14.8](chapter14.md#section_14.8), [page 472](chapter14.md#p472).
 
 ## 10.6 Exercises
 <a id="section_10.6"></a>
@@ -1353,7 +1353,7 @@ A set has two main operations: adjoin an element and test for membership.
 It is convenient to also add a map-over-elements operation.
 With these primitive operations it is possible to build up more complex operations like union and intersection.
 
-As mentioned in [section 3.9](chapter3.md#s0095), Common Lisp provides several implementations of sets.
+As mentioned in [section 3.9](chapter3.md#section_3.9), Common Lisp provides several implementations of sets.
 The simplest uses lists as the underlying representation, and provides the functions `adjoin, member, union, intersection`, and `set-difference`.
 Another uses bit vectors, and a similar one uses integers viewed as bit sequences.
 Analyze the time complexity of each implementation for each operation.

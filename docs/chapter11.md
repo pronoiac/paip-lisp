@@ -511,7 +511,7 @@ For facts, the body will be empty.
 | `fail`                    | An indication that unification has failed.                  |
 | `no-bindings`             | A successful unification with no variables.                 |
 |                           | **Previously Defined Functions**                            |
-| `unify`                   | Return bindings that unify two expressions (section 11.2).  |
+| `unify`                   | Return bindings that unify two expressions ([section 11.2](chapter11.md#section_11.2)).  |
 | `unify-variable`          | Unify a variable against an expression.                     |
 | `occurs-check`            | See if a particular variable occurs inside an expression.   |
 | `subst-bindings`          | Substitute bindings into an expression.                     |
@@ -1019,7 +1019,7 @@ This means changing the calling function(s) to provide the additional informatio
 * Return a list.
 This means that the calling function(s) must be changed to expect a list of replies.
 
-* Return a *pipe,* as defined in [section 9.3](chapter9.md#s0020).
+* Return a *pipe,* as defined in [section 9.3](chapter9.md#section_9.3).
 Again, the calling function(s) must be changed to expect a pipe.
 
 * Guess and save.
@@ -1033,7 +1033,7 @@ Unfortunately, it does have one major difficulty: there has to be a way of packa
 For our Prolog interpreter, the current state is succinctly represented as a list of goals.
 In other problems, it is not so easy to summarize the entire state.
 
-We will see in [section 22.4](chapter22.md#s0025) that the Scheme dialect of Lisp provides a function, `call-with-current-continuation`, that does exactly what we want: it packages the current state of the computation into a function, which can be stored away and invoked later.
+We will see in [section 22.4](chapter22.md#section_22.4) that the Scheme dialect of Lisp provides a function, `call-with-current-continuation`, that does exactly what we want: it packages the current state of the computation into a function, which can be stored away and invoked later.
 Unfortunately, there is no corresponding function in Common Lisp.
 
 ### Anonymous Variables
@@ -1069,7 +1069,7 @@ It is installed in the top-level macros `<-` and `?-` so that all clauses and qu
 ```
 
 A named variable that is used only once in a clause can also be considered an anonymous variable.
-This is addressed in a different way in [section 12.3](chapter12.md#s0020).
+This is addressed in a different way in [section 12.3](chapter12.md#section_12.3).
 
 ## 11.4 The Zebra Puzzle
 <a id="section_11.4"></a>
@@ -1237,7 +1237,7 @@ By making the unification procedure more complex, we eliminate the need for back
 ## 11.6 Destructive Unification
 <a id="section_11.6"></a>
 
-As we saw in [section 11.2](#s0015), keeping track of a binding list of variables is a little tricky.
+As we saw in [section 11.2](#section_11.2), keeping track of a binding list of variables is a little tricky.
 It is also prone to inefficiency if the binding list grows large, because the list must be searched linearly, and because space must be allocated to hold the binding list.
 An alternative implementation is to change `unify` to a destructive operation.
 In this approach, there are no binding lists.

@@ -267,7 +267,7 @@ Actually, we return the list of the input word, because, as in the previous prog
 (3) In some cases, when the symbol has rewrites, we will pick one that is a list of symbols, and try to generate from that.
 Thus, `generate` must also accept a list as input, in which case it should generate each element of the list, and then append them all together.
 In the following, the first clause in `generate` handles this case, while the second clause handles (1) and the third handles (2).
-Note that we used the `mappend` function from section 1.7 (page 18).
+Note that we used the `mappend` function from [section 1.7](chapter1.md#section_1.7) (page 18).
 
 ```lisp
 (defun generate (phrase)

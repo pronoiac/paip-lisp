@@ -82,7 +82,7 @@ Also note that ANSI renames the `lisp package` as `common-lisp`.
  (:export emycin defrule defcontext defparm yes/no yes no is))
 ```
 
-For more on packages and building systems, see [section 25.16](chapter25.md#s0110) or *Common Lisp the Language.*
+For more on packages and building systems, see [section 25.16](chapter25.md#section_25.16) or *Common Lisp the Language.*
 
 ### The Seven Name Spaces
 
@@ -240,7 +240,7 @@ The example using series would look like:
 This looks very much like the functional version: only the names have been changed.
 However, it compiles into efficient iterative code very much like the `dolist` version.
 
-Like pipes (see [section 9.3](chapter9.md#s0015)), elements of a series are only evaluated when they are needed.
+Like pipes (see [section 9.3](chapter9.md#section_9.3)), elements of a series are only evaluated when they are needed.
 So we can write `(scan-range :from 0)` to indicate the infinite series of integers starting from 0, but if we only use, say, the first five elements of this series, then only the first five elements will be generated.
 
 The series facility offers a convenient and efficient alternative to iterative loops and sequence functions.
@@ -572,7 +572,7 @@ Each keyword is quite simple:
 The `collect` keyword poses another challenge.
 How do you collect a list of expressions presented one at a time?
 The answer is to view the expressions as a queue, one where we add items to the rear but never remove them from the front of the queue.
-Then we can use the queue functions defined in [section 10.5](chapter10.md#s0025).
+Then we can use the queue functions defined in [section 10.5](chapter10.md#section_10.5).
 
 Unlike the other clauses, value accumulation clauses can communicate with each other.
 There can be, say, two `collect` and an append clause in the same loop, and they all build onto the same list.

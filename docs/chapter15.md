@@ -7,14 +7,14 @@
 
 [Chapter 8](chapter8.md) started with high hopes: to take an existing pattern matcher, copy down some mathematical identities out of a reference book, and come up with a usable symbolic algebra system.
 The resulting system *was* usable for some purposes, and it showed that the technique of rule-based translation is a powerful one.
-However, the problems of [section 8.5](chapter8.md#s0030) show that not everything can be done easily and efficiently within the rule-based pattern matching framework.
+However, the problems of [section 8.5](chapter8.md#section_8.5) show that not everything can be done easily and efficiently within the rule-based pattern matching framework.
 
 There are important mathematical transformations that are difficult to express in the rule-based approach.
 For example, dividing two polynomials to obtain a quotient and remainder is a task that is easier to express as an algorithm-a program-than as a rule or set of rules.
 
 In addition, there is a problem with efficiency.
 Pieces of the input expressions are simplified over and over again, and much time is spent interpreting rules that do not apply.
-[Section 9.6](chapter9.md#s0035) showed some techniques for speeding up the program by a factor of 100 on inputs of a dozen or so symbols, but for expressions with a hundred or so symbols, the speed-up is not enough.
+[Section 9.6](chapter9.md#section_9.6) showed some techniques for speeding up the program by a factor of 100 on inputs of a dozen or so symbols, but for expressions with a hundred or so symbols, the speed-up is not enough.
 We can do better by designing a specialized representation from the ground up.
 
 Serious algebraic manipulation programs generally enforce a notion of *canonical simplification.* That is, expressions are converted into a canonical internal format that may be far removed from the input form.
@@ -579,7 +579,7 @@ We can time `(simp ' ( (1 + x + y + z) ^ 15)))`.
 This takes only a tenth of a second, but that is because it is doing no work at all-the answer is the same as the input!
 Alternately, we can take the expression computed by `(poly^n r 15)`, convert it to prefix, and pass that to `simplify`.
 `simplify` takes 27.8 seconds on this, so the rule-based version is much slower.
-[Section 9.6](chapter9.md#s0035) describes ways to speed up the rule-based program, and a comparison of timing data appears on [page 525](#p525).
+[Section 9.6](chapter9.md#section_9.6) describes ways to speed up the rule-based program, and a comparison of timing data appears on [page 525](#p525).
 
 There are always surprises when it comes down to measuring timing data.
 For example, the alert reader may have noticed that the version of `poly^n` defined above requires *n* multiplications.
@@ -830,7 +830,7 @@ A brief history of symbolic algebra systems is given in [chapter 8](chapter8.md)
 
 **Exercise 15.8 [m]** Modify `deriv` to handle the extended rational expressions.
 
-**Exercise 15.9 [d]** Adapt the integration routine from [section 8.6](chapter8.md#s0035) ([page 252](chapter8.md#p252)) to the rational expression representation.
+**Exercise 15.9 [d]** Adapt the integration routine from [section 8.6](chapter8.md#section_8.6) ([page 252](chapter8.md#p252)) to the rational expression representation.
 [Davenport et al.
 1988](bibliography.md#bb0270) may be useful.
 
