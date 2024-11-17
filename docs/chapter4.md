@@ -50,6 +50,7 @@ To summarize, the five stages of an AI programming project are:
 
 
 ## 4.1 Stage 1: Description
+<a id="section_4.1"></a>
 
 As our problem description, we will start with a quote from Newell and Simon's 1972 book, *Human Problem Solving:*
 
@@ -100,6 +101,7 @@ However, if we can define these notions better, it seems we won't need any new n
 Thus, we will arbitrarily decide that the problem description is complete, and move on to the problem specification.
 
 ## 4.2 Stage 2: Specification
+<a id="section_4.2"></a>
 
 At this point we have an idea-admittedly vague-of what it means to solve a problem in `GPS`. We can refine these notions into representations that are closer to Lisp as follows:
 
@@ -141,6 +143,7 @@ Once the preconditions have been achieved, applying an operator means executing 
 Since our program is just a simulation-it won't be actually driving a car or dialling a telephone-we must be content simply to print out the action, rather than taking any real action.
 
 ## 4.3 Stage 3: Implementation
+<a id="section_4.3"></a>
 
 The specification is complete enough to lead directly to a complete Common Lisp program.
 [Figure 4.1](#f0010) summarizes the variables, data types, and functions that make up the GPS program, along with some of the Common Lisp functions used to implement it.
@@ -266,6 +269,7 @@ This involves printing a message to that effect and changing the state of the wo
 `apply-op` is also a predicate; it returns `t` only when the operator can be applied.
 
 ## 4.4 Stage 4: Test
+<a id="section_4.4"></a>
 
 This section will define a list of operators applicable to the "driving to nursery school" domain and will show how to pose and solve some problems in that domain.
 First, we need to construct the list of operators for the domain.
@@ -356,6 +360,7 @@ Knowing the phone number is a precondition, directly or indirectly, of all the o
 Finally, the third example is much more direct; the initial state specifies that the car works, so the driving operator can be applied immediately.
 
 ## 4.5 Stage 5: Analysis, or "We Lied about the G"
+<a id="section_4.5"></a>
 
 In the sections that follow, we examine the question of just how general this General Problem Solver is.
 The next four sections point out limitations of our version of GPS, and we will show how to correct these limitations in a second version of the program.
@@ -366,6 +371,7 @@ AI programming is largely exploratory programming; the aim is often to discover 
 This is in contrast to a more traditional notion of programming, where the problem is completely specified before the first line of code is written.
 
 ## 4.6 The Running Around the Block Problem
+<a id="section_4.6"></a>
 
 Representing the operator "driving from home to school" is easy: the precondition and delete-list includes being at home, and the add-list includes being at school.
 But suppose we wanted to represent "running around the block." There would be no net change of location, so does that mean there would be no add or delete-list?
@@ -373,6 +379,7 @@ If so, there would be no reason ever to apply the operator.
 Perhaps the add-list should contain something like "got some exercise" or "feel tired," or something more general like "experience running around the block." We will return to this question later.
 
 ## 4.7 The Clobbered Sibling Goal Problem
+<a id="section_4.7"></a>
 
 Consider the problem of not only getting the child to school but also having some money left over to use for the rest of the day.
 GPS can easily solve this problem from the following initial condition:
@@ -421,6 +428,7 @@ The introduction of `achieve-all` prevents GPS from returning true when one of t
 We won't consider that possibility now, but we will take it up again in the section on the blocks world domain, which was Sussman's primary example.
 
 ## 4.8 The Leaping before You Look Problem
+<a id="section_4.8"></a>
 
 Another way to address the "prerequisite clobbers sibling goal" problem is just to be more careful about the order of goals in a goal list.
 If we want to get the kid to school and still have some money left, why not just specify the goal as (`son-at-school have-money`) rather than (`have-money son-at-school`)?
@@ -448,6 +456,7 @@ An alternative would be to replace the single global `*state*` with distinct loc
 This alternative is a good one for another, independent reason, as we shall see in the next section.
 
 ## 4.9 The Recursive Subgoal Problem
+<a id="section_4.9"></a>
 
 In our simulated nursery school world there is only one way to find out a phone number: to look it up in the phone book.
 Suppose we want to add an operator for finding out a phone number by asking someone.
@@ -505,6 +514,7 @@ As Aristotle put it, "If we are to be always deliberating, we shall have to go o
 One way to avoid the problem is to have `achieve` keep track of all the goals that are being worked on and give up if it sees a loop in the goal stack.
 
 ## 4.10 The Lack of Intermediate Information Problem
+<a id="section_4.10"></a>
 
 When GPS fails to find a solution, it just returns `nil`.
 This is annoying in cases where the user expected a solution to be found, because it gives no information about the cause of failure.
@@ -570,6 +580,7 @@ To generate indented output, the function `dbg-indent` is defined:
     (apply #'format *debug-io* format-string args)))
 ```
 ## 4.11 GPS Version 2: A More General Problem Solver
+<a id="section_4.11"></a>
 
 At this point we are ready to put together a new version of GPS with solutions for the "running around the block," "prerequisite clobbers sibling goal," "leaping before you look," and "recursive subgoal" problems.
 The glossary for the new version is in [figure 4.2](#f0015).
@@ -884,6 +895,7 @@ Finally, we see that this version of GPS also works on trivial problems requirin
 `> (gps '(son-at-home) '(son-at-home))`=> `((START))`
 
 ## 4.12 The New Domain Problem: Monkey and Bananas
+<a id="section_4.12"></a>
 
 To show that GPS is at all general, we have to make it work in different domains.
 We will start with a "classic" AI problem.<a id="tfn04-3"></a><sup>[3](#fn04-3)</sup>
@@ -950,6 +962,7 @@ Notice we did not need to make any changes at all to the `GPS` program.
 We just used a different set of operators.
 
 ## 4.13 The Maze Searching Domain
+<a id="section_4.13"></a>
 
 Now we will consider another "classic" problem, maze searching.
 We will assume a particular maze, diagrammed here.
@@ -1070,6 +1083,7 @@ Pick out the destination, `*y*,` from each `(EXECUTING (MOVE FROM x TO y))` form
 `> (equal (find-path 1 25) (reverse (find-path 25 1)))`=> `T`
 
 ## 4.14 The Blocks World Domain
+<a id="section_4.14"></a>
 
 Another domain that has attracted more than its share of attention in AI circles is the blocks world domain.
 Imagine a child's set of building blocks on a table top.
@@ -1342,6 +1356,7 @@ This is a surprising fact, and the example has come to be known as "the Sussman 
 We will return to this problem in [chapter 6](chapter6.md).
 
 ## 4.15 Stage 5 Repeated: Analysis of Version 2
+<a id="section_4.15"></a>
 
 We have shown that GPS is extensible to multiple domains.
 The main point is that we didn't need to change the program itself to get the new domains to work; we just changed the list of operators passed to GPS.
@@ -1350,6 +1365,7 @@ Although version 2 is a big improvement over version 1, it still leaves much to 
 Now we will discover a few of the most troubling problems.
 
 ## 4.16 The Not Looking after You Don't Leap Problem
+<a id="section_4.16"></a>
 
 We solved the "leaping before you look" problem by introducing variables to hold a representation of possible future states, rather than just a single variable representing the current state.
 This prevents GPS from taking an ill-advised action, but we shall see that even with all the repair strategies introduced in the last section, it doesn't guarantee that a solution will be found whenever one is possible.
@@ -1412,6 +1428,7 @@ If we tried only one ordering-achieving `son-at-school` and then trying to prote
 David Warren's WARPLAN planner makes good use of the idea of protected goals.
 
 ## 4.17 The Lack of Descriptive Power Problem
+<a id="section_4.17"></a>
 
 It would be a lot more economical, in the maze domain, to have one operator that says we can move from here to there if we are at "here," and if there is a connection from "here" to "there." Then the input to a particular problem could list the valid connections, and we could solve any maze with this single operator.
 Similarly, we have defined an operator where the monkey pushes the chair from the door to the middle of the room, but it would be better to have an operator where the monkey can push the chair from wherever it is to any other nearby location, or better yet, an operator to push any "pushable" object from one location to a nearby one, as long as there is no intervening obstacle.
@@ -1438,6 +1455,7 @@ Or we may be satisfied with a partial solution, if a complete solution is imposs
 We may also want to take the cost (and time) of computation into account.
 
 ## 4.18 The Perfect Information Problem
+<a id="section_4.18"></a>
 
 All the operators we have seen so far have unambiguous results; they add or delete certain things from the current state, and GPS always knows exactly what they are going to do.
 In the real world, things are rarely so cut and dried.
@@ -1448,6 +1466,7 @@ In the nursery school problem, we could represent the problem with the car batte
 In the real world, we are seldom this careful; we get in the car, and only when it doesn't start do we consider the possibility of a dead battery.
 
 ## 4.19 The Interacting Goals Problem
+<a id="section_4.19"></a>
 
 People tend to have multiple goals, rather than working on one at a time.
 Not only do I want to get the kid to nursery school, but I want to avoid getting hit by another car, get to my job on time, get my work done, meet my friends, have some fun, continue breathing, and so on.
@@ -1467,6 +1486,7 @@ Herb Simon coined the term "satisficing" to describe the strategy of satisfying 
 GPS only knows success and failure, and thus has no way of maximizing partial success.
 
 ## 4.20 The End of GPS
+<a id="section_4.20"></a>
 
 These last four sections give a hint as to the scope of the limitations of GPS.
 In fact, it is not a very general problem solver at all.
@@ -1510,6 +1530,7 @@ But the means toward that end involved an investigation and formalization of the
 By that measure, our reconstruction of GPS is a success to the degree in which it leads the reader to a better understanding of the issues.
 
 ## 4.21 History and References
+<a id="section_4.21"></a>
 
 The original GPS is documented in Newell and Simon's 1963 paper and in their 1972 book, *Human Problem Solving*, as well as in Ernst and Newell 1969.
 The implementation in this chapter is based on the Strips program (Fikes and Nilsson 1971).
@@ -1524,6 +1545,7 @@ David Chapman's Tweak synthesizes and formalizes the state of the art in plannin
 All of these papers-and quite a few other important planning papers-are reprinted in Allen, Hendler, and Tate 1990.
 
 ## 4.22 Exercises
+<a id="section_4.22"></a>
 
 **Exercise  4.1 [m]** It is possible to implement dbg using a single call to format.
 Can you figure out the format directives to do this?
@@ -1559,6 +1581,7 @@ Your program will be more efficient if, like Chapman's Tweak program, you allow 
 **Exercise  4.7 [d]** Speculate on the design of a planner that can address the *Perfect Information* and *Interacting Goals* problems.
 
 ## 4.23 Answers
+<a id="section_4.23"></a>
 
 **Answer 4.1** In this version, the format string `"~&~V@T~?"` breaks down as follows: `"~&"` means go to a fresh line; `"~V@T"` means insert spaces `(@T)` but use the next argument `(V)` to get the number of spaces.
 The `"~?"` is the indirection operator: use the next argument as a format string, and the argument following that as the list of arguments for the format string.

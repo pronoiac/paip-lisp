@@ -38,6 +38,7 @@ They are equal to or better than even champion human players.
 We will be able to develop a simplified version that is not quite a champion but is much better than beginning players.
 
 ## 18.1 The Rules of the Game
+<a id="section_18.1"></a>
 
 Othello is played on a 8-by-8 board, which is initially set up with four pieces in the center, as shown in [figure 18.1](#f0010).
 The two players, black and white, alternate turns, with black playing first.
@@ -64,6 +65,7 @@ This usually happens because there are no empty squares left, but it occasionall
 | **Figure 18.2: Legal Othello Moves** |
 
 ## 18.2 Representation Choices
+<a id="section_18.2"></a>
 
 In developing an Othello program, we will want to test out various strategies, playing those strategies against each other and against human players.
 We may also want our program to allow two humans to play a game.
@@ -440,6 +442,7 @@ Alternately, `(othello #'random-strategy #'human)` will allow us to match our wi
 The rest of this chapter shows how to develop a better strategy.
 
 ## 18.3 Evaluating Positions
+<a id="section_18.3"></a>
 
 The random-move strategy is, of course, a poor one.
 We would like to make a good move rather than a random move, but so far we don't know what makes a good move.
@@ -527,6 +530,7 @@ Is this a good test to determine which strategy is better?
 ```
 
 ## 18.4 Searching Ahead: Minimax
+<a id="section_18.4"></a>
 
 Even the weighted-squares strategy is no match for an experienced player.
 There are two ways we could improve the strategy.
@@ -686,6 +690,7 @@ The game is over. Final result:
 ```
 
 ## 18.5 Smarter Searching: Alpha-Beta Search
+<a id="section_18.5"></a>
 
 The problem with a full minimax search is that it considers too many positions.
 It looks at every line of play, including many improbable ones.
@@ -768,6 +773,7 @@ It must be stressed that `alpha-beta` computes the exact same result as the full
 The only advantage of the cutoffs is making the search go faster by considering fewer positions.
 
 ## 18.6 An Analysis of Some Games
+<a id="section_18.6"></a>
 
 Now is a good time to stop and analyze where we have gone.
 We've demonstrated a program that can play a *legal* game of Othello, and some strategies that may or may not play a *good* game.
@@ -1008,6 +1014,7 @@ The `modified-weighted-squares` evaluation function does just that.
 ```
 
 ## 18.7 The Tournament Version of Othello
+<a id="section_18.7"></a>
 
 While the `othello` function serves as a perfectly good moderator for casual play, there are two points that need to be fixed for tournament-level play.
 First, tournament games are played under a strict time limit: a player who takes over 30 minutes total to make all the moves forfeits the game.
@@ -1173,6 +1180,7 @@ Also note the esoteric format option: `"~2, '0d"` prints a decimal number using 
 ```
 
 ## 18.8 Playing a Series of Games
+<a id="section_18.8"></a>
 
 A single game is not enough to establish that one strategy is better than another.
 The following function allows two strategies to compete in a series of games:
@@ -1359,6 +1367,7 @@ It is clear that these strategies do not play well in the opening game, but for 
 This may explain white's slight edge, or it may be a statistical aberration.
 
 ## 18.9 More Efficient Searching
+<a id="section_18.9"></a>
 
 The alpha-beta cutoffs work when we have established a good move and another move proves to be not as good.
 Thus, we will be able to make cutoffs earlier if we ensure that good moves are considered first.
@@ -1488,6 +1497,7 @@ In this case the evaluation function and the static-ordering strategy are in str
 As we develop evaluation functions that vary from the weighted-squares approach, we will have to run experiments again to see if the static-ordering is still the best.
 
 ## 18.10 It Pays to Precycle
+<a id="section_18.10"></a>
 
 The progressive city of Berkeley, California, has a strong recycling program to reclaim glass, paper, and aluminum that would otherwise be discarded as garbage.
 In 1989, Berkeley instituted a novel program of *precycling:* consumers are encouraged to avoid buying products that come in environmentally wasteful packages.
@@ -1526,6 +1536,7 @@ In particular, if each element of a board is only 2 bits, then it may be much fa
 The advisability of this approach depends on the implementation, and so it is not explored further here.
 
 ## 18.11 Killer Moves
+<a id="section_18.11"></a>
 
 In [section 18.9](#s0050), we considered the possibility of searching moves in a different order, in an attempt to search the better moves first, thereby getting more alpha-beta pruning.
 In this section, we consider the *killer heuristic,* which states that a move that has proven to be a good one in one line of play is also likely to be a good one in another line of play.
@@ -1609,6 +1620,7 @@ It should be stressed once again that all this work on alpha-beta cutoffs, order
 We still end up choosing the same move that would be made by a full minimax search to the given depth, we are just doing it faster, without looking at possibilities that we can prove are not as good.
 
 ## 18.12 Championship Programs: Iago and Bill
+<a id="section_18.12"></a>
 
 As mentioned in the introduction, the unpredictability of Othello makes it a difficult game for humans to master, and thus programs that search deeply can do comparatively well.
 In fact, in 1981 the reigning champion, Jonathan Cerf, proclaimed "In my opinion the top programs ... are now equal (if not superior) to the best human players." In discussing Rosenbloom's Iago program (1982), Cerf went on to say "I understand Paul Rosenbloom is interested in arranging a match against me.
@@ -2009,6 +2021,7 @@ Despite these successes, it is likely that the evaluation function could be impr
 ```
 
 ## 18.13 Other Techniques
+<a id="section_18.13"></a>
 
 There are many other variations that can be tried to speed up the search and improve play.
 Unfortunately, choosing among the techniques is a bit of a black art.
@@ -2173,6 +2186,7 @@ Either way, the idea is that natural selection will eventually yield a high-qual
 To increase the chances of this, it is a good idea to allow for mutations: random changes in the genetic makeup of one of the candidates.
 
 ## 18.14 History and References
+<a id="section_18.14"></a>
 
 [Lee and Mahajan (1986,](bibliography.md#bb0710)[1990)](bibliography.md#bb0715) present the current top Othello program, Bill.
 Their description outlines all the techniques used but does not go into enough detail to allow the reader to reconstruct the program.
@@ -2203,6 +2217,7 @@ Genetic algorithms are discussed by L.
 [Davis (1987,](bibliography.md#bb0280) [1991)](bibliography.md#bb0285) and [Goldberg (1989)](bibliography.md#bb0480).
 
 ## 18.15 Exercises
+<a id="section_18.15"></a>
 
 **Exercise  18.3 [s]** How many different Othello positions are there?
 Would it be feasible to store the complete game tree and thus have a perfect player?
@@ -2228,6 +2243,7 @@ It will also be helpful to read [Rosenbloom 1982](bibliography.md#bb1000).
 **Exercise  18.10 [h]** Write move-generation and evaluation functions for another game, such as chess or checkers.
 
 ## 18.16 Answers
+<a id="section_18.16"></a>
 
 **Answer 18.2** The `weighted-squares` strategy wins the first game by 20 pieces, but when `count-difference` plays first, it captures all the pieces on its fifth move.
 These two games alone are not enough to determine the best strategy; the function `othello-series` on [page 626](#p626) shows a better comparison.

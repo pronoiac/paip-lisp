@@ -9,6 +9,7 @@ In [chapters 4](chapter4.md) and [5](chapter5.md) we were concerned with buildin
 Those patterns will be abstracted out to form reusable software tools that will prove helpful in subsequent chapters.
 
 ## 6.1 An Interactive Interpreter Tool
+<a id="section_6.1"></a>
 
 The structure of the function `eliza` is a common one.
 It is repeated below:
@@ -142,6 +143,7 @@ The function `prompt-generator`, for example, returns a function that will print
 ```
 
 ## 6.2 A Pattern-Matching Tool
+<a id="section_6.2"></a>
 
 The `pat-match` function was a pattern matcher defined specifically for the ELIZA program.
 Subsequent programs will need pattern matchers too, and rather than write specialized matchers for each new program, it is easier to define one general pattern matcher that can serve most needs, and is extensible in case novel needs come up.
@@ -538,6 +540,7 @@ Does this make the rules easier to read?
 Informally, show that `pat-match` will always find such a binding, or show a counterexample where it fails to find one.
 
 ## 6.3 A Rule-Based Translator Tool
+<a id="section_6.3"></a>
 
 As we have defined it, the pattern matcher matches one input against one pattern.
 In `eliza`, we need to match each input against a number of patterns, and then return a result based on the rule that contains the first pattern that matches.
@@ -595,6 +598,7 @@ The rule-based translator tool now looks like this:
 ```
 
 ## 6.4 A Set of Searching Tools
+<a id="section_6.4"></a>
 
 The GPS program can be seen as a problem in *search*.
 In general, a search problem involves exploring from some starting state and investigating neighboring states until a solution is reached.
@@ -1486,6 +1490,7 @@ Here is a function that finds all solutions, using beam search:
 ```
 
 ## 6.5 GPS as Search
+<a id="section_6.5"></a>
 
 The GPS program can be seen as a problem in search.
 For example, in the three-block blocks world, there are only 13 different states.
@@ -1564,6 +1569,7 @@ But we could formulate means-ends analysis as forward search simply by reversing
 This is left as an exercise.
 
 ## 6.6 History and References
+<a id="section_6.6"></a>
 
 Pattern matching is one of the most important tools for AI.
 As such, it is covered in most textbooks on Lisp.
@@ -1576,6 +1582,7 @@ They are at a lower level of abstraction than the ones in this chapter.
 Iterative deepening was first presented by [Korf (1985)](bibliography.md#bb0640), and iterative broadening by [Ginsberg and Harvey (1990)](bibliography.md#bb0470).
 
 ## 6.7 Exercises
+<a id="section_6.7"></a>
 
 **Exercise  6**.**3** [**m**] Write a version of `interactive-interpreter` that is more general than the one defined in this chapter.
 Decide what features can be specified, and provide defaults for them.
@@ -1614,6 +1621,7 @@ Use these costs instead of a constant cost of 1 for each operation.
 **Exercise  6**.**15** [**d**] Write a version of GPS that uses the searching tools but does means-ends analysis.
 
 ## 6.8 Answers
+<a id="section_6.8"></a>
 
 **Answer 6**.**2** Unfortunately, `pat-match` does not always find the answer.
 The problem is that it will only rebind a segment variable based on a failure to match the rest of the pattern after the segment variable.

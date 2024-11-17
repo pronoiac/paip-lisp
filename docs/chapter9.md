@@ -126,6 +126,7 @@ The techniques outlined here result in a 130-fold speed-up in this program.
 [Chapter 10](chapter10.md) concentrates on lower-level "tricks" for improving efficiency further.
 
 ## 9.1 Caching Results of Previous Computations: Memoization
+<a id="section_9.1"></a>
 
 We start with a simple mathematical function to demonstrate the advantages of caching techniques.
 Later we will demonstrate more complex examples.
@@ -378,6 +379,7 @@ Note that if the key is a list of arguments, then you will have to use `equal` h
 ```
 
 ## 9.2 Compiling One Language into Another
+<a id="section_9.2"></a>
 
 In [chapter 2](chapter2.md) we defined a new language-the language of grammar rules-which was processed by an interpreter designed especially for that language.
 An *interpreter* is a program that looks at some data structure representing a "program" or sequence of rules of some sort and interprets or evaluates those rules.
@@ -603,6 +605,7 @@ As a user of this compiler, there's no need for me to write clever macros or com
 With another compiler that didn't know about such optimizations, I would have to be more careful about the code I generate.
 
 ## 9.3 Delaying Computation
+<a id="section_9.3"></a>
 
 Back on [page 45](chapter2.md#p45), we saw a program to generate all strings derivable from a grammar.
 One drawback of this program was that some grammars produce an infinite number of strings, so the program would not terminate on those grammars.
@@ -925,6 +928,7 @@ Define a function that will fairly interleave elements, so that all of them are 
 Show that the function works by changing `generate-all` to work with it.
 
 ## 9.4 Indexing Data
+<a id="section_9.4"></a>
 
 Lisp makes it very easy to use lists as the universal data structure.
 A list can represent a set or an ordered sequence, and a list with sublists can represent a tree or graph.
@@ -940,6 +944,7 @@ You may want to build your own hash tables if, for example, you never need to de
 We will see an example of efficient indexing in [section 9.6](#s0035) ([page 297](chapter9.md#p297)).
 
 ## 9.5 Instrumentation: Deciding What to Optimize
+<a id="section_9.5"></a>
 
 Because Lisp is such a good rapid-prototyping language, we can expect to get a working implementation quickly.
 Before we go about trying to improve the efficiency of the implementation, it is a good idea to see what parts are used most often.
@@ -1221,6 +1226,7 @@ It evaluates the first argument, and if all goes well it then evaluates the othe
 But if an error occurs during the evaluation of the first argument and computation is aborted, then the subsequent arguments (called cleanup forms) are evaluated anyway.
 
 ## 9.6 A Case Study in Efficiency: The SIMPLIFY Program
+<a id="section_9.6"></a>
 
 Suppose we wanted to speed up the `simplify` program of [chapter 8](chapter8.md).
 This section shows how a combination of general techniques-memoizing, indexing, and compiling-can be used to speed up the program by a factor of 130.
@@ -1750,6 +1756,7 @@ The following table summarizes the execution time and number of function calls o
 | simplify-exp    | 274      | 118   | 118          | 118         | 274  |
 
 ## 9.7 History and References
+<a id="section_9.7"></a>
 
 The idea of memoization was introduced by Donald Michie 1968.
 He proposed using a list of values rather than a hash table, so the savings was not as great.
@@ -1769,6 +1776,7 @@ The idea of eliminating unneeded computation is so attractive that entire langua
 See [Hughes 1985](bibliography.md#bb0565) or [Field and Harrison 1988](bibliography.md#bb0400).
 
 ## 9.8 Exercises
+<a id="section_9.8"></a>
 
 **Exercise 9.3 [d]** In this chapter we presented a compiler for `simplify`.
 It is not too much harder to extend this compiler to handle the full power of `pat-match`.
@@ -1864,6 +1872,7 @@ Is this worth it?
 ```
 
 ## 9.9 Answers
+<a id="section_9.9"></a>
 
 **Answer 9.4** Let *F<sub>n</sub>* denote (`fib n`).
 Then the time to compute *F<sub>n</sub>*, *T<sub>n</sub>*, is a small constant for *n* &le; 1, and is roughly equal to *T<sub>n-1</sub>* plus *T<sub>n-2</sub>* for larger *n*.

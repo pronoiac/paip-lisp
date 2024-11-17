@@ -17,6 +17,7 @@ If your Lisp compiler came without such a handy instruction booklet, this chapte
 It lists some of the most common difficulties that Lisp programmers encounter.
 
 ## 25.1 Nothing Happens
+<a id="section_25.1"></a>
 
 **PROBLEM:** You type an expression to Lisp's read-eval-print loop and get no response-no result, no prompt.
 
@@ -72,6 +73,7 @@ Check the base case and loop variant on active functions and loops.
 **Diagnosis:** The expression you evaluated must have returned no values at all, that is, the result `(values)`.
 
 ## 25.2 Change to Variable Has No Effect
+<a id="section_25.2"></a>
 
 **PROBLEM:** You redefined a variable, but the new value was ignored.
 
@@ -114,6 +116,7 @@ This function should have been written:
 ```
 
 ## 25.3 Change to Function Has No Effect
+<a id="section_25.3"></a>
 
 **PROBLEM:** You redefined a function, but the change was ignored.
 
@@ -292,6 +295,7 @@ The following is a better use of backquote:
 ```
 
 ## 25.4 Values Change "by Themselves"
+<a id="section_25.4"></a>
 
 **PROBLEM:** You deleted/removed something, but it didn't take effect.
 For example:
@@ -341,6 +345,7 @@ Remember that the initial value field of a defstruct is an expression that is ev
 It is incorrect to think that the initial form is evaluated once when the `defstruct` is defined.
 
 ## 25.5 Built-In Functions Don't Find Elements
+<a id="section_25.5"></a>
 
 **PROBLEM:** You tried (`find item list`), and you know it is there, but it wasn't found.
 
@@ -354,6 +359,7 @@ If `item` is, say, a list that is `equal` but not `eql` to one of the elements o
 **Remedy:** Use `member` or `position` instead of `find` whenever the item can be nil.
 
 ## 25.6 Multiple Values Are Lost
+<a id="section_25.6"></a>
 
 **PROBLEM:** You only get one of the multiple values you were expecting.
 
@@ -393,6 +399,7 @@ Unfortunately, `print` will see only the first value returned by `mv-1`, and wil
 The other values will be discarded, and `b` and `c` will be bound to `nil`.
 
 ## 25.7 Declarations Are Ignored
+<a id="section_25.7"></a>
 
 **PROBLEM:** Your program uses 1024 x 1024 arrays of floating-point numbers.
 But you find that it takes 15 seconds just to initialize such an array to zeros!
@@ -438,6 +445,7 @@ Actually, it is equivalent to (`simple-array t (*)`), a simple one-dimensional a
 To eliminate this problem, avoid `simple-vector` altogether.
 
 ## 25.8 My Lisp Does the Wrong Thing
+<a id="section_25.8"></a>
 
 When all else fails, it is tempting to shift the blame for an error away from your own code and onto the Common Lisp implementation.
 It is certainly true that errors are found in existing implementations.
@@ -466,6 +474,7 @@ The moral is this: functions that have both optional and keyword arguments are c
 Take care when using existing functions that have this problem, and abstain from using both in your own functions.
 
 ## 25.9 How to Find the Function You Want
+<a id="section_25.9"></a>
 
 Veteran Common Lisp programmers often experience a kind of software *d&eacute;j&agrave; vu:* they believe that the code they are writing could be done by a built-in Common Lisp function, but they can't remember the name of the function.
 
@@ -506,6 +515,7 @@ Another possibility is to browse through existing code that performs a similar p
 That way, you may find the exact function you want, and you may get additional ideas on how to do things differently.
 
 ## 25.10 Syntax of LOOP
+<a id="section_25.10"></a>
 
 `loop` by itself is a powerful programming language, one with a syntax quite different from the rest of Lisp.
 It is therefore important to exercise restraint in using `loop`, lest the reader of your program become lost.
@@ -516,6 +526,7 @@ When in doubt, macro-expand the loop to see what it actually does.
 But if you need to macro-expand, then perhaps it would be clearer to rewrite the loop with more primitive constructs.
 
 ## 25.11 Syntax of COND
+<a id="section_25.11"></a>
 
 For many programmers, the special form cond is responsible for more syntax errors than any other, with the possible exception of `loop`.
 Because most cond-clause start with two left parentheses, beginners often come to the conclusion that every clause must.
@@ -543,6 +554,7 @@ The moral is to be careful with cond, especially when using Scheme.
 Note that `if` is much less error prone and looks just as nice when there are no more than two branches.
 
 ## 25.12 Syntax of CASE
+<a id="section_25.12"></a>
 
 In a `case` special form, each clause consists of a key or list of keys, followed by the value of that case.
 The thing to watch out for is when the key is `t`, `otherwise`, or `nil`.
@@ -570,12 +582,14 @@ The following code correctly tests for `t` and `nil` keys:
 ```
 
 ## 25.13 Syntax of LET and LET*
+<a id="section_25.13"></a>
 
 A common error is leaving off a layer of parentheses in `let`, just like in cond.
 Another error is to refer to a variable that has not yet been bound in a `let`.
 To avoid this problem, use `let*` whenever a variable's initial binding refers to a previous variable.
 
 ## 25.14 Problems with Macros
+<a id="section_25.14"></a>
 
 In [section 3.2](chapter3.md#s0015) we described a four-part approach to the design of macros:
 
@@ -886,6 +900,7 @@ For example, compare:
 ```
 
 ## 25.15 A Style Guide to Lisp
+<a id="section_25.15"></a>
 
 In a sense, this whole book is a style guide to writing quality Lisp programs.
 But this section attempts to distill some of the lessons into a set of guidelines.
@@ -1006,6 +1021,7 @@ First we define the function `required` to signal an error, and then we use a ca
 ```
 
 ## 25.16 Dealing with Files, Packages, and Systems
+<a id="section_25.16"></a>
 
 While this book has covered topics that are more advanced than any other Lisp text available, it is still concerned only with programming in the small: a single project at a time, capable of being implemented by a single programmer.
 More challenging is the problem of programming in the large: building multiproject, multiprogrammer systems that interact well.
@@ -1167,6 +1183,7 @@ This is not hard to do, since Common Lisp provides the function `file-write-date
 ```
 
 ## 25.17 Portability Problems
+<a id="section_25.17"></a>
 
 Programming is difficult.
 All programmers know the frustration of trying to get a program to work according to the specification.
@@ -1214,6 +1231,7 @@ Finally, many implementations provide extensions to Common Lisp, either by addin
 The programmer must be careful not to use such extensions in portable code.
 
 ## 25.18 Exercises
+<a id="section_25.18"></a>
 
 **Exercise 25.1 [h]** On your next programming project, keep a log of each bug you detect and its eventual cause and remedy.
 Classify each one according to the taxonomy given in this chapter.
@@ -1246,6 +1264,7 @@ You will need to use `define-setf-method`, not `defsetf`.
 ```
 
 ## 25.19 Answers
+<a id="section_25.19"></a>
 
 **Answer 25.4** Here is the setf method for `lookup`.
 It looks for the key in the a-list, and if the key is there, it modifies the cdr of the pair containing the key; otherwise it adds a new key/value pair to the front of the a-list.

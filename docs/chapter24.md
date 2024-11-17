@@ -8,6 +8,7 @@ Thus, they may not be applicable to your Lisp compiler.
 The final topic, sequence functions, shows how to write efficient functions that work for either lists or vectors.
 
 ## 24.1 Packages
+<a id="section_24.1"></a>
 
 A *package* is a symbol table that maps from strings to symbols named by those strings.
 When read is confronted with a sequence of characters like `list`, it uses the symbol table to determine that this refers to the symbol `list`.
@@ -118,6 +119,7 @@ In the following example `f`, can you identify which of the twelve uses of `f` r
 ```
 
 ## 24.2 Conditions and Error Handling
+<a id="section_24.2"></a>
 
 An extraordinary feature of ANSI Common Lisp is the facility for handling errors.
 In most languages it is very difficult for the programmer to arrange to recover from an error.
@@ -194,6 +196,7 @@ Through judicious use of `handler-case`, the programmer can create robust code t
 For more details, see chapter 29 of *Common Lisp the Language,* 2d edition.
 
 ## 24.3 Pretty Printing
+<a id="section_24.3"></a>
 
 ANSI Common Lisp adds a facility for user-controlled pretty printing.
 In general, *pretty printing* refers to the process of printing complex expressions in a format that uses indentation to improve readability.
@@ -202,6 +205,7 @@ Chapter 27 of *Common Lisp the Language,* 2d edition presents a pretty-printing 
 In addition, the facility is integrated with the `format` function.
 
 ## 24.4 Series
+<a id="section_24.4"></a>
 
 The functional style of programming with higher-order functions is one of the attractions of Lisp.
 The following expression to sum the square roots of the positive numbers in the list `nums` is clear and concise:
@@ -243,6 +247,7 @@ The series facility offers a convenient and efficient alternative to iterative l
 Although the series proposal has not yet been adopted as an official part of ANSI Common Lisp, its inclusion in the reference manual has made it increasingly popular.
 
 ## 24.5 The Loop Macro
+<a id="section_24.5"></a>
 
 The original specification of Common Lisp included a simple `loop` macro.
 The body of the loop was executed repeatedly, until a `return` was encountered.
@@ -767,6 +772,7 @@ I have omitted the data-type declarations and destructuring capabilities.
 ```
 
 ## 24.6 Sequence Functions
+<a id="section_24.6"></a>
 
 Common Lisp provides sequence functions to make the programmer's life easier: the same function can be used for lists, vectors, and strings.
 However, this ease of use comes at a cost.
@@ -1225,6 +1231,7 @@ Therefore, this is the approach I adopt.
 ```
 
 ## 24.7 Exercises
+<a id="section_24.7"></a>
 
 **Exercise  24.2 [m]** The function `reduce` is a very useful one, especially with the `key` keyword.
 Write nonrecursive definitions for `append` and `length` using `reduce`.
@@ -1249,6 +1256,7 @@ Use `defloop` to implement these two keywords.
 Make them generate code conditionally, based on a global flag.
 
 ## 24.8 Answers
+<a id="section_24.8"></a>
 
 **Answer 24.1**
 

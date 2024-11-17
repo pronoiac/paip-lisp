@@ -26,6 +26,7 @@ But if you would like your programs to run faster, the techniques described here
 *   Use the right data structure.
 
 ## 10.1 Use Declarations
+<a id="section_10.1"></a>
 
 On general-purpose computers running Lisp, much time is spent on type-checking.
 You can gain efficiency at the cost of robustness by declaring, or promising, that certain variables will always be of a given type.
@@ -277,6 +278,7 @@ The type `simple-string` is an abbreviation for `(simple-array string-char)`.
 This guide applies to most Common Lisp systems, but you should look in the implementation notes for your particular system for more advice on how to fine-tune your code.
 
 ## 10.2 Avoid Generic Functions
+<a id="section_10.2"></a>
 
 Common Lisp provides functions with great generality, but someone must pay the price for this generality.
 For example, if you write `(elt x 0)`, different machine instruction will be executed depending on if x is a list, string, or vector.
@@ -294,6 +296,7 @@ This example was simple, but in more complicated cases you can make your sequenc
 See the definition of `map-into` on [page 857](chapter24.md#p857).
 
 ## 10.3 Avoid Complex Argument Lists
+<a id="section_10.3"></a>
 
 Functions with keyword arguments suffer a large degree of overhead.
 This may also be true for optional and rest arguments, although usually to a lesser degree.
@@ -564,6 +567,7 @@ But when maintainability is considered, keyword parameters look much better.
 When a program is being developed, and it is not clear if a function will eventually need additional arguments, keyword parameters may be the best choice.
 
 ## 10.4 Avoid Unnecessary Consing
+<a id="section_10.4"></a>
 
 The `cons` function may appear to execute quite quickly, but like all functions that allocate new storage, it has a hidden cost.
 When large amounts of storage are used, eventually the system must spend time garbage collecting.
@@ -1035,6 +1039,7 @@ A common problem is to have only a few live objects on each page, thus forcing t
 Compacting garbage collectors can collect live objects onto the same page, but using resources may interfere with this.
 
 ## 10.5 Use the Right Data Structures
+<a id="section_10.5"></a>
 
 It is important to implement key data types with the most efficient implementation.
 This can vary from machine to machine, but there are a few techniques that are universal.
@@ -1311,6 +1316,7 @@ Quite a bit of searching is required before arriving at the complete set of matc
 We will return to the problem of discrimination nets with variables in [section 14.8](chapter14.md#s0040), [page 472](chapter14.md#p472).
 
 ## 10.6 Exercises
+<a id="section_10.6"></a>
 
 **Exercise 10.1 [h]** Define the macro `deftable,` such that `(deftable person assoc`) will act much like a `defstruct` - it will define a set of functions for manipulating a table of people: `get-person`, `put-person`, `clear-person,` and `map-person`.
 The table should be implemented as an association list.
@@ -1355,6 +1361,7 @@ Analyze the time complexity of each implementation for each operation.
 Next, show how *sorted lists* can be used to implement sets, and compare the operations on sorted lists to their counterparts on unsorted lists.
 
 ## 10.7 Answers
+<a id="section_10.7"></a>
 
 **Answer 10.2**
 

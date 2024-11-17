@@ -478,6 +478,7 @@ Note that no continuations are stored-`f` can return directly to the caller of t
 However, all this explicit manipulation of environments is inefficient; in this case we could have compiled the whole thing by simply pushing 4, 3, and 4 on the stack and calling `f`.
 
 ## 23.1 A Properly Tail-Recursive Lisp Compiler
+<a id="section_23.1"></a>
 
 In this section we describe a new version of the compiler, first by showing examples of its output, and then by examining the compiler itself, which is summarized in figure 23.3.
 The new version of the compiler also makes use of a different function calling sequence, using two new instructions, `CALLJ` and `SAVE`.
@@ -1145,6 +1146,7 @@ L1:     GVAR X
 ```
 
 ## 23.2 Introducing Call/cc
+<a id="section_23.2"></a>
 
 Now that the basic compiler works, we can think about how to implement `call/cc` in our compiler.
 First, remember that `call/cc` is a normal function, not a special form.
@@ -1156,6 +1158,7 @@ This requires one more instruction, `SET-CC`.
 The details of this, and of all the other instructions, are revealed in the next section.
 
 ## 23.3 The Abstract Machine
+<a id="section_23.3"></a>
 
 So far we have defined the instruction set of a mythical abstract machine and generated assembly code for that instruction set.
 It's now time to actually execute the assembly code and hence have a useful compiler.
@@ -1439,6 +1442,7 @@ Eventually, we will have to garbage-collect all those unused frames (and the con
 How could we avoid or limit this garbage collection?
 
 ## 23.4 A Peephole Optimizer
+<a id="section_23.4"></a>
 
 In this section we investigate a simple technique that will generate slightly better code in cases where the compiler gives inefficient sequences of instructions.
 The idea is to look at short sequences of instructions for prespecified patterns and replace them with equivalent but more efficient instructions.
@@ -1605,6 +1609,7 @@ Here are six optimizer functions that implement a few important peephole optimiz
 ```
 
 ## 23.5 Languages with Different Lexical Conventions
+<a id="section_23.5"></a>
 
 This chapter has shown how to evaluate a language with Lisp-like syntax, by writing a read-eval-print loop where only the `eval` needs to be replaced.
 In this section we see how to make the `read` part slightly more general.
@@ -1793,6 +1798,7 @@ Such problems rarely come up in Common Lisp because functions and variables have
 Those who do define local functions tend not to use already established names like `list` and `append.`
 
 ## 23.6 History and References
+<a id="section_23.6"></a>
 
 Guy Steele's 1978 MIT master's thesis on the language Scheme, rewritten as Steele 1983, describes an innovative and influential compiler for Scheme, called RABBIT.<a id="tfn23-2"></a><sup>[2](#fn23-2)</sup>
 A good article on an "industrial-strength" Scheme compiler based on this approach is described in [Kranz et al.'s 1986](bibliography.md#bb0675) paper on ORBIT, the compiler for the T dialect of Scheme.
@@ -1804,6 +1810,7 @@ It presents a very clear, simple compiler, although it is for an older, dynamica
 The peephole optimizer described here is based on the one in [Masinter and Deutsch 1980](bibliography.md#bb0780).
 
 ## 23.7 Exercises
+<a id="section_23.7"></a>
 
 **Exercise  23.3 [h]** Scheme's syntax for numbers is slightly different from Common Lisp's.
 In particular, complex numbers are written like `3+4i` rather than `#c(3 4)`.
@@ -1899,6 +1906,7 @@ This will involve changing the names of some procedures and special forms, figur
 One possibility is to translate a `call/cc` into a `catch` and `throw`, and disallow dynamic continuations.
 
 ## 23.8 Answers
+<a id="section_23.8"></a>
 
 **Answer 23.2** We can save frames by making a resource for frames, as was done on page 337.
 Unfortunately, we can't just use the `defresource` macro as is, because we need a separate resource for each size frame.

@@ -86,6 +86,7 @@ A glossary of the program is in [figure  16.1](#f0010).
 *(ed: this could be a markdown table)*
 
 ## 16.1 Dealing with Uncertainty
+<a id="section_16.1"></a>
 
 EMYCIN deals with uncertainty by replacing the two boolean values, true and false, with a range of values called *certainty factors*.
 These are numbers from -1 (false) to +1 (true), with 0 representing a complete unknown.
@@ -220,6 +221,7 @@ The following functions support this arbitrary cutoff point:
 If you combine certainties using EMYCIN's combination rule, how many more copies of the newspaper would you need to see before you were .95 certain Elvis is alive?
 
 ## 16.2 Caching Derived Facts
+<a id="section_16.2"></a>
 
 The second thing that makes EMYCIN different from Prolog is that EMYCIN *caches* all the facts it derives in a data base.
 When Prolog is asked to prove the same goal twice, it performs the same computation twice, no matter how laborious.
@@ -278,6 +280,7 @@ Third, we shall see that the flow of control is managed in part by a list of *co
 These are structures that will be passed to the `MYCIN` function.
 
 ## 16.3 Asking Questions
+<a id="section_16.3"></a>
 
 The third way that EMYCIN differs from Prolog is in providing an automatic means of asking the user questions when answers cannot be derived from the rules.
 This is not a fundamental difference; after all, it is not too hard to write Prolog rules that print a query and read a reply.
@@ -424,6 +427,7 @@ Therefore, in the default prompt we need to use the format directive `"~*"` to s
 ```
 
 ## 16.4 Contexts Instead of Variables
+<a id="section_16.4"></a>
 
 Earlier we gave an equation relating EMYCIN to Prolog.
 That equation was not quite correct, because EMYCIN lacks one of Prolog's most important features: the logic variable.
@@ -507,6 +511,7 @@ The context tree is shown in [figure 16.2](#fig-16-02).
 ```
 
 ## 16.5 Backward-Chaining Revisited
+<a id="section_16.5"></a>
 
 Now that we have seen how EMYCIN is different from Prolog, we are ready to tackle the way in which it is the same: the backward-chaining rule interpreter.
 Like Prolog, EMYCIN is given a goal and applies rules that are appropriate to the goal.
@@ -710,6 +715,7 @@ Finally, we also need a top-level function, `emycin`, which just clears the data
 ```
 
 ## 16.6 Interacting with the Expert
+<a id="section_16.6"></a>
 
 At this point all the serious computational work is done: we have defined a backward-chaining rule mechanism that deals with uncertainty, caching, questions, and contexts.
 But there is still quite a bit of work to do in terms of input/output interaction.
@@ -768,6 +774,7 @@ The real EMYCIN had an interactive environment that prompted the expert for each
 Randall Davis ([1977](bibliography.md#bb0290), [1979](bibliography.md#bb0295), [Davis and Lenat 1982](bibliography.md#bb0300)) describes the TEIRESIAS program, which helped experts enter and debug rules.
 
 ## 16.7 Interacting with the Client
+<a id="section_16.7"></a>
 
 Once the knowledge is in, we need some way to get it out.
 The client wants to run the system on his or her own problem and see two things: a solution to the problem, and an explanation of why the solution is reasonable.
@@ -883,6 +890,7 @@ That completes the definition of `emycin`.
 We are now ready to apply the shell to a specific domain, yielding the beginnings of an expert system.
 
 ## 16.8 **MYCIN**, A Medical Expert System
+<a id="section_16.8"></a>
 
 This section applies `emycin` to MYCIN's original domain: infectious blood disease.
 In our version of MYCIN, there are three contexts: first we consider a patient, then any cultures that have been grown from samples taken from the patient, and finally any infectious organisms in the cultures.
@@ -1105,6 +1113,7 @@ Note that the question asked will be "What is Sylvia Fischer's white blood cell 
 ```
 
 ## 16.9 Alternatives to Certainty Factors
+<a id="section_16.9"></a>
 
 Certainty factors are a compromise.
 The good news is that a system based on rules with certainty factors requires the expert to come up with only a small set of numbers (one for each rule) and will allow fast computation of answers.
@@ -1154,6 +1163,7 @@ He shows that there are efficient algorithms for combining and propagating proba
 It seems likely that uncertain reasoning in the 1990s will be based increasingly on Bayesian probability theory.
 
 ## 16.10 History and References
+<a id="section_16.10"></a>
 
 The MYCIN project is well documented in [Buchanan and Shortliffe 1984](bibliography.md#bb0145).
 An earlier book, [Shortliffe 1976](bibliography.md#bb1100), is interesting mainly for historical purposes.
@@ -1166,6 +1176,7 @@ Fuzzy set theory is presented in Zadeh 1979 and [Dubois and Prade 1988](bibliogr
 [Shafer and Pearl 1990](bibliography.md#bb1090) is a balanced collection of papers on all kinds of uncertain reasoning.
 
 ## 16.11 Exercises
+<a id="section_16.11"></a>
 
 **Exercise  16.2 [s]** Suppose the rule writer wanted to be able to use symbolic certainty factors instead of numbers.
 What would you need to change to support rules like this:
@@ -1283,6 +1294,7 @@ Identify what needs to be altered to implement change and make the alterations.
 Do the same for Dempster-Shafer theory.
 
 ## 16.12 Answers
+<a id="section_16.12"></a>
 
 **Answer 16.1** Because EMYCIN assumes independence, each reading of the same headline would increase the certainty factor.
 The following computation shows that 298 more copies would be needed to reach .95 certainty.

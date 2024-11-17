@@ -16,6 +16,7 @@ Since that book is 25 times longer than this chapter, it is clear that we can on
 More detailed coverage is given later in this book as each feature is used in a real program.
 
 ## 3.1 A Guide to Lisp Style
+<a id="section_3.1"></a>
 
 The beginning Common Lisp programmer is often overwhelmed by the number of options that the language provides.
 In this chapter we show fourteen different ways to find the length of a list.
@@ -72,6 +73,7 @@ Some prefer `(setq x val)` because it is most specific; others use `(setf x val)
 Whichever choice you make on such issues, remember the sixth maxim: be consistent.
 
 ## 3.2 Special Forms
+<a id="section_3.2"></a>
 
 As noted in [chapter 1](chapter1.md), "special form" is the term used to refer both to Common Lisp's syntactic constructs and the reserved words that mark these constructs.
 
@@ -898,6 +900,7 @@ This completes the section on special forms and macros.
 The remaining sections of this chapter give an overview of the important built-in functions in Common Lisp.
 
 ## 3.3 Functions on Lists
+<a id="section_3.3"></a>
 
 For the sake of example, assume we have the following assignments:
 
@@ -964,6 +967,7 @@ Use the built-in function `princ` to print each component of the expression.
 &#9635; **Exercise 3.4 [m]** Write a function that, like the regular `print` function, will print an expression in dotted pair notation when necessary but will use normal list notation when possible.
 
 ## 3.4 Equality and Internal Representation
+<a id="section_3.4"></a>
 
 In Lisp there are five major equality predicates, because not all objects are created equally equal.
 The numeric equality predicate, `=`, tests if two numbers are the same.
@@ -1011,6 +1015,7 @@ The `?` value means that the result depends on your implementation: two integers
 In addition, there are specialized equality predicates such as =, `tree-equal, char-equal,` and `string-equal,` which compare numbers, trees, characters, and strings, respectively.
 
 ## 3.5 Functions on Sequences
+<a id="section_3.5"></a>
 
 Common Lisp is in a transitional position halfway between the Lisps of the past and the Lisps of the future.
 Nowhere is that more apparent than in the sequence functions.
@@ -1041,6 +1046,7 @@ Confusingly, `nth` is the only one that takes the index as the first argument:
 The most important sequence functions are listed elsewhere in this chapter, depending on their particular purpose.
 
 ## 3.6 Functions for Maintaining Tables
+<a id="section_3.6"></a>
 
 Lisp lists can be used to represent a one-dimensional sequence of objects.
 Because they are so versatile, they have been put to other purposes, such as representing tables of information.
@@ -1164,6 +1170,7 @@ There is no way to remove quickly every element of a table implemented with prop
 In contrast, this can be done trivially with `clrhash` on hash tables, or by setting an association list to nil.
 
 ## 3.7 Functions on Trees
+<a id="section_3.7"></a>
 
 Many Common Lisp functions treat the expression `((a b) ((c)) (d e))` as a sequence of three elements, but there are a few functions that treat it as a tree with five non-null leaves.
 The function `copy-tree` creates a copy of a tree, and `tree-equal` tests if two trees are equal by traversing cons cells, but not other complex data like vectors or strings.
@@ -1214,6 +1221,7 @@ The name `sublis` is uncharacteristically short and confusing; a better name wou
 ```
 
 ## 3.8 Functions on Numbers
+<a id="section_3.8"></a>
 
 The most commonly used functions on numbers are listed here.
 There are quite a few other numeric functions that have been omitted.
@@ -1238,6 +1246,7 @@ There are quite a few other numeric functions that have been omitted.
 | `(rem 11 5)`   | => `1`   | remainder (also `mod`)                                         |
 
 ## 3.9 Functions on Sets
+<a id="section_3.9"></a>
 
 One of the important uses of lists is to represent sets.
 Common Lisp provides functions that treat lists in just that way.
@@ -1291,6 +1300,7 @@ For example,
 ```
 
 ## 3.10 Destructive Functions
+<a id="section_3.10"></a>
 
 In mathematics, a function is something that computes an output value given some input arguments.
 Functions do not "do" anything, they just compute results.
@@ -1345,6 +1355,7 @@ If the program runs out of guesses, it gives up and asks the user what "it" was.
 At first the program will not play well, but each time it plays, it will remember the user's replies and use them for subsequent guesses.
 
 ## 3.11 Overview of Data Types
+<a id="section_3.11"></a>
 
 This chapter has been organized around functions, with similar functions grouped together.
 But there is another way of organizing the Common Lisp world: by considering the different data types.
@@ -1439,6 +1450,7 @@ While almost every type has a predicate, it is also true that there are predicat
 For example, `oddp` is true only of odd integers, and `string-greaterp` is true if one string is alphabetically greater than another.
 
 ## 3.12 Input/Output
+<a id="section_3.12"></a>
 
 Input in Lisp is incredibly easy because a complete lexical and syntactic parser is available to the user.
 The parser is called `read`.
@@ -1530,6 +1542,7 @@ Finally, the directive `~^` exits from the enclosing `~{...~}` loop if there are
 You can see that `format`, like `loop`, comprises almost an entire programming language, which, also like `loop`, is not a very Lisplike language.
 
 ## 3.13 Debugging Tools
+<a id="section_3.13"></a>
 
 In many languages, there are two strategies for debugging: (1) edit the program to insert print statements, recompile, and try again, or (2) use a debugging program to investigate (and perhaps alter) the internal state of the running program.
 
@@ -1624,6 +1637,7 @@ It is intended as the primary method for setting debugging break points.
 However, it is still a good idea to check for unusual conditions with `error`, `cerror`, `assert,` or `check-type`, which will be described in the following section.
 
 ## 3.14 Antibugging Tools
+<a id="section_3.14"></a>
 
 It is a good idea to include *antibugging* checks in your code, in addition to doing normal debugging.
 Antibugging code checks for errors and possibly takes corrective action.
@@ -1804,6 +1818,7 @@ In other words, separate the development stage from the fine-tuning stage.
 [Chapters 9](chapter9.md) and [10](chapter10.md) give more details on efficiency consideration, and [chapter 25](chapter25.md) gives more advice on debugging and antibugging techniques.
 
 ## 3.15 Evaluation
+<a id="section_3.15"></a>
 
 There are three functions for doing evaluation in Lisp: `funcall, apply,` and `eval`.
 `funcall` is used to apply a function to individual arguments, while `apply` is used to apply a function to a list of arguments.
@@ -1825,6 +1840,7 @@ Instead, programmers are expected to use `lambda` to create a new function, and 
 In general, if you find yourself using `eval,` you are probably doing the wrong thing.
 
 ## 3.16 Closures
+<a id="section_3.16"></a>
 
 What does it mean to create a new function?
 Certainly every time a `function` (or `#')` special form is evaluated, a function is returned.
@@ -1886,6 +1902,7 @@ The subsequent calls to the two closures change their respective balances, but t
 This style of programming will be considered in more detail in [chapter 13](chapter13.md).
 
 ## 3.17 Special Variables
+<a id="section_3.17"></a>
 
 Common Lisp provides for two kinds of variables: *lexical* and *special* variables.
 For the beginner, it is tempting to equate the special variables in Common Lisp with global variables in other languages.
@@ -1987,6 +2004,7 @@ Once the program is running, the identifiers have been compiled away and cannot 
 ```
 
 ## 3.18 Multiple Values
+<a id="section_3.18"></a>
 
 Throughout this book we have spoken of "the value returned by a function."
 Historically, Lisp was designed so that every function returns a value, even those functions that are more like procedures than like functions.
@@ -2048,6 +2066,7 @@ It has no value, definition or properties.
 ```
 
 ## 3.19 More about Parameters
+<a id="section_3.19"></a>
 
 Common Lisp provides the user with a lot of flexibility in specifying the parameters to a function, and hence the arguments that the function accepts.
 Following is a program that gives practice in arithmetic.
@@ -2314,6 +2333,7 @@ Against my better judgement, I show an example:
 ```
 
 ## 3.20 The Rest of Lisp
+<a id="section_3.20"></a>
 
 There is a lot more to Common Lisp than what we have seen here, but this overview should be enough for the reader to comprehend the programs in the chapters to come.
 The serious Lisp programmer will further his or her education by continuing to consult reference books and online documentation.
@@ -2323,6 +2343,7 @@ While it may be distracting for the beginner to be continually looking at some r
 It would interrupt the description of the AI programs, which is what this book is all about.
 
 ## 3.21 Exercises
+<a id="section_3.21"></a>
 
 &#9635; **Exercise 3.9 [m]** Write a version of `length` using the function `reduce`.
 
@@ -2335,6 +2356,7 @@ What is the name of this function?
 You will have to consult a reference to learn new `format` directives.
 
 ## 3.22 Answers
+<a id="section_3.22"></a>
 
 **Answer 3.2** `(cons` *a b*) = (`list*` *a b*)
 

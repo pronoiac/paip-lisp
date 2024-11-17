@@ -87,6 +87,7 @@ This suggests that neither ELIZA nor PARRY had a deep understanding of the dialo
 When there is a human to take on most of the burden of carrying forth the conversation, these programs can be convincing, but when the human is taken out of the conversation, the weaknesses of the programs are revealed.
 
 ## 5.1 Describing and Specifying ELIZA
+<a id="section_5.1"></a>
 Now that we have an idea of what ELIZA is like, we can begin the description and specification of the program, and eventually move to the implementation and debugging.
 
 The ELIZA algorithm can be described simply as: (1) read an input, (2) find a pattern that matches the input, (3) transform the input into a response, and (4) print the response.
@@ -99,6 +100,7 @@ The user will have to type a real list-using parentheses-and the user can't use 
 So our input won't be as unconstrained as in the sample dialog, but that's a small price to pay for the convenience of having half of the problem neatly solved.
 
 ## 5.2 Pattern Matching
+<a id="section_5.2"></a>
 The hard part comes with steps (2) and (3)-this notion of pattern matching and transformation.
 There are four things to be concerned with: a general pattern and response, and a specific input and transformation of that input.
 Since we have agreed to represent the input as a list, it makes sense for the other components to be lists too.
@@ -330,6 +332,7 @@ Yet another implementation is given in section 10.4.
 It is more efficient but more cumbersome to use.
 
 ## 5.3 Segment Pattern Matching
+<a id="section_5.3"></a>
 In the pattern `(?P need . ?X)`, the variable `?X` matches the rest of the input list, regardless of its length.
 This is in contrast to `?P`, which can only match a single element, namely, the first element of the input.
 For many applications of pattern matching, this is fine; we only want to match corresponding elements.
@@ -470,6 +473,7 @@ Note that this version of `segment-match` tries the shortest possible match firs
 It would also be possible to try the longest match first.
 
 ## 5.4 The ELIZA Program: A Rule-Based Translator
+<a id="section_5.4"></a>
 Now that we have a working pattern matcher, we need some patterns to match.
 What's more, we want the patterns to be associated with responses.
 We can do this by inventing a data structure called a `rule`, which consists of a pattern and one or more associated responses.
@@ -648,6 +652,7 @@ Clearly, the problem of understanding English is not solved by ELIZA.
 In part V, we will address the problem again, using more sophisticated techniques.
 
 ## 5.5 History and References
+<a id="section_5.5"></a>
 As mentioned above, the original article describing ELIZA is Weizenbaum 1966.
 Another dialog system using similar pattern-matching techniques is Kenneth Colby's (1975) PARRY.
 This program simulated the conversation of a paranoid person well enough to fool several professional psychologists.
@@ -658,6 +663,7 @@ Weizenbaum's book *Computer Power and Human Reason* (1976) discusses ELIZA and P
 Other interesting early work on dialog systems that model belief is reported by Allan Collins (1978) and Jamie Carbonell (1981).
 
 ## 5.6 Exercises
+<a id="section_5.6"></a>
 &#9635; **Exercise 5.2 [m]** Experiment with this version of ELIZA.
 Show some exchanges where it performs well, and some where it fails.
 Try to characterize the difference.
@@ -739,6 +745,7 @@ If so, in what way?
 &#9635; **Exercise 5.18 [h]** Read Weizenbaum's original article on ELIZA and transpose his list of rules into the notation used in this chapter.
 
 ## 5.7 Answers
+<a id="section_5.7"></a>
 ### Answer 5.1
 No.
 If either the pattern or the input were shorter, but matched every existing element, the every expression would incorrectly return true.

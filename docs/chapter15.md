@@ -35,6 +35,7 @@ It is hard to find a canonical form that is ideal for all problems.
 The best we can do is choose one that works well for the problems we are most likely to encounter.
 
 ## 15.1 A Canonical Form for Polynomials
+<a id="section_15.1"></a>
 
 This section will concentrate on a canonical form for *polynomials.* Mathematically speaking, a polynomial is a function (of one or more variables) that can be computed using only addition and multiplication.
 We will speak of a polynomial's *main variable, coefficients,* and *degree.* In the polynomial:
@@ -382,6 +383,7 @@ First, the exponentiation function:
 ```
 
 ## 15.2 Differentiating Polynomials
+<a id="section_15.2"></a>
 
 The differentiation routine is easy, mainly because there are only two operators (`+` and `*`) to deal with:
 
@@ -435,6 +437,7 @@ A full implementation of this feature would have to consider infinity as a bound
 You need not address these problems.
 
 ## 15.3 Converting between Infix and Prefix
+<a id="section_15.3"></a>
 
 All that remains is converting from canonical form back to prefix form, and from there back to infix form.
 This is a good point to extend the prefix form to allow expressions with more than two arguments.
@@ -547,6 +550,7 @@ CANON> [Abort]
 ```
 
 ## 15.4 Benchmarking the Polynomial Simplifier
+<a id="section_15.4"></a>
 
 Unlike the rule-based program, this version gets all the answers right.
 Not only is the program correct (at least as far as these examples go), it is also fast.
@@ -735,6 +739,7 @@ Instead, the fastest version was achieved by throwing out the original rule-base
 Now that we have achieved a sufficiently fast system, the next two sections concentrate on making it more powerful.
 
 ## 15.5 A Canonical Form for Rational Expressions
+<a id="section_15.5"></a>
 
 A *rational* number is defined as a fraction: the quotient of two integers.
 A *rational expression* is hereby defined as the quotient of two polynomials.
@@ -785,6 +790,7 @@ Polynomials are closed under addition and multiplication, so `poly+poly` and `po
 Polynomials are not closed under division, so `poly/poly` will return a rational expression.
 
 ## 15.6 Extending Rational Expressions
+<a id="section_15.6"></a>
 
 Now that we can divide polynomials, the final step is to reinstate the logarithmic, exponential, and trigonometric functions.
 The problem is that if we allow all these functions, we get into problems with canonical form again.
@@ -810,6 +816,7 @@ Algorithms that would be guaranteed to work over a simple differentiable field m
 In general, the result will not be a wrong answer but rather the failure to find an answer at all.
 
 ## 15.7 History and References
+<a id="section_15.7"></a>
 
 A brief history of symbolic algebra systems is given in [chapter 8](chapter8.md).
 [Fateman (1979)](bibliography.md#bb0385), [Martin and Fateman (1971)](bibliography.md#bb0775), and [Davenport et al.
@@ -817,6 +824,7 @@ A brief history of symbolic algebra systems is given in [chapter 8](chapter8.md)
 [Fateman (1991)](bibliography.md#bb0390) discusses the `frpoly` benchmark and introduces the vector implementation used in this chapter.
 
 ## 15.8 Exercises
+<a id="section_15.8"></a>
 
 **Exercise 15.7 [h]** Implement an extension of the rationals to include logarithmic, exponential, and trigonometric functions.
 
@@ -829,6 +837,7 @@ A brief history of symbolic algebra systems is given in [chapter 8](chapter8.md)
 **Exercise 15.10 [s]** Give several reasons why constant polynomials, like 3, are represented as integers rather than as vectors.
 
 ## 15.9 Answers
+<a id="section_15.9"></a>
 
 **Answer 15.4**
 

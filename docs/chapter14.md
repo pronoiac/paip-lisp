@@ -42,6 +42,7 @@ Thus, in the 1990s the emphasis has shifted to *knowledge representation and rea
 No amount of knowledge can help solve an intractable problem in the worse case, but in practice the worst case rarely occurs.
 
 ## 14.1 A Taxonomy of Representation Languages
+<a id="section_14.1"></a>
 
 AI researchers have investigated hundreds of knowledge representation languages, trying to find languages that are convenient, expressive, and efficient.
 The languages can be classified into four groups, depending on what the basic unit of representation is.
@@ -86,6 +87,7 @@ The KL-ONE family of languages uses both logical formulae and objects arranged i
 Many frame languages allow *procedural attachment,* a technique that uses arbitrary procedures to compute values for expressions that are inconvenient or impossible to express in the frame language itself.
 
 ## 14.2 Predicate Calculus and its Problems
+<a id="section_14.2"></a>
 
 So far, many of our representations have been based on predicate calculus, a notation with a distinguished position in AI: it serves as the universal standard by which other representations are defined and evaluated.
 The previous section gave an example expression from a frame language.
@@ -150,6 +152,7 @@ This is not meant as an endorsement for Prolog as the ultimate knowledge represe
 Rather, it is meant solely to give us a clear and familiar foundation from which to build.
 
 ## 14.3 A Logical Language: Prolog
+<a id="section_14.3"></a>
 
 Prolog has been proposed as the answer to the problem of programming in logic.
 Why isn't it accepted as the universal representation language?
@@ -166,6 +169,7 @@ Because it does not check for circular unification, it can give incorrect answer
 Third, Prolog has no good way of adding control information to the underlying logic, making it inefficient on certain problems.
 
 ## 14.4 Problems with Prolog's Expressiveness
+<a id="section_14.4"></a>
 
 If Prolog is programming in logic, it is not the full predicate logic we are familiar with.
 The main problem is that Prolog can't express certain kinds of indefinite facts.
@@ -291,6 +295,7 @@ Here `p2` is a Skolem function that depends on the variable `?y`.
 In other words, everyone likes some person, but not necessarily the same person.
 
 ## 14.5 Problems with Predicate Calculus's Expressiveness
+<a id="section_14.5"></a>
 
 In the previous section we saw that Prolog has traded some expressiveness for efficiency.
 This section explores the limits of predicate calculus's expressiveness.
@@ -347,6 +352,7 @@ There are versions of predicate calculus that admit quantifiers like "most" in a
 However, there is no consensus on the way to approach this problem.
 
 ## 14.6 Problems with Completeness
+<a id="section_14.6"></a>
 
 Because Prolog searches depth-first, it can get caught in one branch of the search space and never examine the other branches.
 This problem can show up, for example, in trying to define a commutative relation, like `sibling`:
@@ -454,6 +460,7 @@ The same problem comes up if we ask if there are any sets that include themselve
 The query `(member ?set ?set)` will succeed, but we will not be able to print the value of `?set`.
 
 ## 14.7 Problems with Efficiency: Indexing
+<a id="section_14.7"></a>
 
 Our Prolog compiler is designed to handle "programlike" predicates-predicates with a small number of rules, perhaps with complex bodies.
 The compiler does much worse on "tablelike" predicates-predicates with a large number of simple facts.
@@ -477,6 +484,7 @@ But that is just what our compiler does.
 The solutions to the three problems-expressiveness, completeness, and indexing-will be considered in reverse order, so that the most difficult one, expressiveness, will come last.
 
 ## 14.8 A Solution to the Indexing Problem
+<a id="section_14.8"></a>
 
 A better solution to the phone-book problem is to index each phone-book entry in some kind of table that makes it easy to add, delete, and retrieve entries.
 That is what we will do in this section.
@@ -903,6 +911,7 @@ Here is the implementation:
 ```
 
 ## 14.9 A Solution to the Completeness Problem
+<a id="section_14.9"></a>
 
 We saw in [chapter 6](chapter6.md) that iterative deepening is an efficient way to cover a search space without falling into an infinite loop.
 Iterative deepening can also be used to guide the search in Prolog.
@@ -1012,6 +1021,7 @@ No.
 ```
 
 ## 14.10 Solutions to the Expressiveness Problems
+<a id="section_14.10"></a>
 
 In this section we present solutions to three of the limitations described above:
 
@@ -1806,6 +1816,7 @@ On the other hand, a Skolem constant can potentially unify with any other consta
 The equality mechanism is used to keep track of each Skolem variable's possible bindings.
 
 ## 14.11 History and References
+<a id="section_14.11"></a>
 
 [Brachman and Levesque (1985)](bibliography.md#bb0115) collect thirty of the key papers in knowledge representation.
 Included are some early approaches to semantic network based ([Quillian 1967](bibliography.md#bb0965)) and logic-based ([McCarthy 1968](bibliography.md#bb0805)) representation.
@@ -1844,6 +1855,7 @@ Papers on extending unification in ways other than equality include [A&iuml;t-Ka
 Finally, papers on extending Prolog to cover disjunction and negation (i.e., non-Horn clauses) include [Loveland 1987](bibliography.md#bb0755), [Plaisted 1988](bibliography.md#bb0960), and [Stickel 1988](bibliography.md#bb1200).
 
 ## 14.12 Exercises
+<a id="section_14.12"></a>
 
 **Exercise  14.1 [m]** Arrange to store dtrees in a hash table rather than on the property list of predicates.
 
@@ -1874,6 +1886,7 @@ This support has already been provided for dtrees, but you will have to provide 
 Use it to solve Moore's problem ([page 466](#p466)).
 
 ## 14.13 Answers
+<a id="section_14.13"></a>
 
 **Answer 14.1**
 

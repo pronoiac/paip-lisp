@@ -108,6 +108,7 @@ Lisp chooses to use semicolons for another purpose—to mark the beginning of a 
 ```
 
 ## 1.1 Symbolic Computation
+<a id="section_1.1"></a>
 
 All we've done so far is manipulate numbers in the same way a simple pocket calculator would.
 Lisp is more useful than a calculator for two main reasons.
@@ -199,6 +200,7 @@ For example, a function to convert dollars to yen might be named with the symbol
 There are a few exceptions to these naming conventions, which will be dealt with as they come up.
 
 ## 1.2 Variables
+<a id="section_1.2"></a>
 
 We have seen some of the basics of symbolic computation.
 Now we move on to perhaps the most important characteristic of a programming language: the ability to define new objects in terms of others, and to name these objects for future use.
@@ -222,6 +224,7 @@ Every symbol can be used as the name of a variable or a function, or both, altho
 For example, `append` and `length` are symbols that name functions but have no values as variables, and `pi` does not name a function but is a variable whose value is 3.1415926535897936 (or thereabout).
 
 ## 1.3 Special Forms
+<a id="section_1.3"></a>
 
 The careful reader will note that `setf` violates the evaluation rule.
 We said earlier that functions like `+`, `-` and `append` work by first evaluating all their arguments and then applying the function to the result.
@@ -265,6 +268,7 @@ The special form operators used in this chapter are:
 | `quote (')`     | introduce constant data                      |
 
 ## 1.4 Lists
+<a id="section_1.4"></a>
 
 So far we have seen two functions that operate on lists: `append` and `length`. Since lists are important, let's look at some more list processing functions:
 
@@ -366,6 +370,7 @@ Instead we want to define a new function that computes the last name of *any* na
 The next section does just that.
 
 ## 1.5 Defining New Functions
+<a id="section_1.5"></a>
 
 The special form `defun` stands for "define function."
 It is used here to define a new function called `last-name`:
@@ -445,6 +450,7 @@ In the last expression we used the function `first` to pick out the first elemen
 We could also have said `(first (first names))` or even `(first (first-name names))` and still have gotten `JOHN`, but we would not be accurately representing what is being considered a name and what is being considered a list of names.
 
 ## 1.6 Using Functions
+<a id="section_1.6"></a>
 
 One good thing about defining a list of names, as we did above, is that it makes it easier to test our functions.
 Consider the following expression, which can be used to test the `last-name` function:
@@ -623,6 +629,7 @@ This completes the demonstration that the function is correct.
 Programmers who learn to think this way find recursion to be a valuable tool rather than a confusing mystery.
 
 ## 1.7 Higher-Order Functions
+<a id="section_1.7"></a>
 
 Functions in Lisp can not only be "called," or applied to arguments, they can also be manipulated just like any other kind of object.
 A function that takes another function as an argument is called a *higher-order function.*
@@ -786,6 +793,7 @@ This is a powerful technique that is not possible in most programming languages.
 These run-time functions, known as *closures,* will be covered in section 3.16.
 
 ## 1.8 Other Data Types
+<a id="section_1.8"></a>
 
 So far we have seen just four kinds of Lisp objects: numbers, symbols, lists, and functions.
 Lisp actually defines about 25 different types of objects: vectors, arrays, structures, characters, streams, hash tables, and others.
@@ -803,6 +811,7 @@ The printed representation of a string has a double quote mark `(")` at each end
 ```
 
 ## 1.9 Summary: The Lisp Evaluation Rule
+<a id="section_1.9"></a>
 
 We can now summarize the evaluation rule for Lisp.
 
@@ -886,6 +895,7 @@ While it may be true that shorter names can save a microsecond at read time, thi
 Every variable, regardless of its name, is just a memory location, and the time to access the location does not depend on the name of the variable.
 
 ## 1.10 What Makes Lisp Different?
+<a id="section_1.10"></a>
 
 What is it that sets Lisp apart from other languages?
 Why is it a good language for AI applications?
@@ -1121,6 +1131,7 @@ With our modern insight (and text editors that automatically indent), a much sim
 ```
 
 ## 1.11 Exercises
+<a id="section_1.11"></a>
 
 &#9635; **Exercise  1.1 [m]** Define a version of `last-name` that handles "Rex Morgan MD," "Morton Downey, Jr.," and whatever other cases you can think of.
 
@@ -1143,6 +1154,7 @@ Example:
 ```
 
 ## 1.12 Answers
+<a id="section_1.12"></a>
 
 ### Answer 1.2
 ```lisp

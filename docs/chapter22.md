@@ -113,6 +113,7 @@ Here is a partial list of correspondences between the two dialects:
 | `string-set!`    | `setf`               |
 
 ## 22.1 A Scheme Interpreter
+<a id="section_22.1"></a>
 
 As we have seen, an interpreter takes a program (or expression) as input and returns the value computed by that program.
 The Lisp function `eval` is thus an interpreter, and that is essentially the function we are trying to write in this section.
@@ -338,6 +339,7 @@ NIL
 ```
 
 ## 22.2 Syntactic Extension with Macros
+<a id="section_22.2"></a>
 
 Scheme has a number of other special forms that were not listed above.
 Actually, Scheme uses the term "syntax" where we have been using "special form." The remaining syntax can be defined as "derived expressions" in terms of the five primitives.
@@ -530,6 +532,7 @@ The interpreter remains simple, even while the language grows.
 This also holds for the compiler, as we see in the next section.
 
 ## 22.3 A Properly Tail-Recursive Interpreter
+<a id="section_22.3"></a>
 
 Unfortunately, the interpreter presented above can not lay claim to the name Scheme, because a true Scheme must be properly tail-recursive.
 Our interpreter is tail-recursive only when run in a Common Lisp that is tail-recursive.
@@ -636,6 +639,7 @@ There are many improvements that could be made to this interpreter, but effort i
 The next chapter does just that.
 
 ## 22.4 Throw, Catch, and Call/cc
+<a id="section_22.4"></a>
 
 Tail-recursion is crucial to Scheme.
 The idea is that when the language is guaranteed to optimize tail-recursive calls, then there is no need for special forms to do iteration.
@@ -869,6 +873,7 @@ The following expression, evaluated at the top level, saves the appropriate cont
 Write `pop.`
 
 ## 22.5 An Interpreter Supporting Call/cc
+<a id="section_22.5"></a>
 
 It is interesting that the more a host language has to offer, the easier it is to write an interpreter.
 Perhaps the hardest part of writing a Lisp interpreter (or compiler) is garbage collection.
@@ -999,6 +1004,7 @@ Once the working of `call/cc` is understood, the implementation is obvious:
 ```
 
 ## 22.6 History and References
+<a id="section_22.6"></a>
 
 Lisp interpreters and AI have a long history together.
 MIT AI Lab Memo No. 1 ([McCarthy 1958](bibliography.md#bb0790)) was the first paper on Lisp.
@@ -1035,6 +1041,7 @@ The `amb` operator for nondeterministic choice was proposed by [John McCarthy (1
 [Ruf and Weise (1990)](bibliography.md#bb1015) present another implementation of backtracking in Scheme that incorporates all of logic programming.
 
 ## 22.7 Exercises
+<a id="section_22.7"></a>
 
 **Exercise  22.5 [m]** While Scheme does not provide full-blown support for optional and keyword arguments, it does support rest parameters.
 Modify the interpreter to support the Scheme syntax for rest parameters:
@@ -1123,6 +1130,7 @@ Or is it possible that the expression read might call some escape function that 
 Explain how this would be done both for the first version of the interpreter and for the continuation-passing version.
 
 ## 22.8 Answers
+<a id="section_22.8"></a>
 
 **Answer 22.2** There is no way to implement a full `call/cc` to Common Lisp, but the following works for cases where the continuation is only used with dynamic extent:
 

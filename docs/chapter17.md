@@ -21,6 +21,7 @@ High-level vision uses the findings of the low-level component to build a three-
 This chapter covers one small aspect of high-level vision.
 
 ## 17.1 The Line-Labeling Problem
+<a id="section_17.1"></a>
 
 In this chapter we look at the line-diagram labeling problem: Given a list of lines and the vertexes at which they intersect, how can we determine what the lines represent?
 For example, given the nine lines in [figure 17.1](#fig-17-01), how can we interpret the diagram as a cube?
@@ -181,6 +182,7 @@ The L is just the reverse.
 ```
 
 ## 17.2 Combining Constraints and Searching
+<a id="section_17.2"></a>
 
 The main function `print-labelings` takes a diagram as input, reduces the number of labelings on each vertex by constraint propagation, and then searches for all consistent interpretations.
 Output is printed before and after each step.
@@ -466,6 +468,7 @@ Thus we need `make-copy-diagram` to create a copy that shares no structure with 
 ```
 
 ## 17.3 Labeling Diagrams
+<a id="section_17.3"></a>
 
 We are now ready to try labeling diagrams.
 First the cube:
@@ -794,6 +797,7 @@ The poiuyt takes a long time to process because there are few local constraints,
 It is interesting that the same fact that makes the processing of the poiuyt take longer is also responsible for its interest as an illusion.
 
 ## 17.4 Checking Diagrams for Errors
+<a id="section_17.4"></a>
 
 This section considers one more example, and considers what to do when there are apparent errors in the input.
 The example is taken from Charniak and McDermott's *Introduction to Artificial Intelligence*, page 138, and shown in [figure 17.12](#fig-17-12).
@@ -1134,6 +1138,7 @@ This section has made two points: First, write code that checks the input as tho
 Second, even when input checking is done, it is still up to the user to understand the limitations of the program.
 
 ## 17.5 History and References
+<a id="section_17.5"></a>
 
 [Guzman (1968)](bibliography.md#bb0500) was one of the first to consider the problem of interpreting line diagrams.
 He classified vertexes, and defined some heuristics for combining information from adjacent vertexes.
@@ -1151,6 +1156,7 @@ Many introductory AI texts give vision short coverage, but [Charniak and McDermo
 It would make a good project to connect their program to the one presented in this chapter, and thereby go all the way from pixels to 3-D descriptions.
 
 ## 17.6 Exercises
+<a id="section_17.6"></a>
 
 This chapter has solved the problem of line-labeling for polyhedra made of trihedral vertexes.
 The following exercises extend this solution.
