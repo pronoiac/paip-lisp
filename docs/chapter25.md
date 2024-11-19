@@ -1057,7 +1057,7 @@ Each module is a list consisting of the module name (a symbol) followed by a one
 We have used keywords as the module names to eliminate any possible name conflicts, but any symbol could be used.
 
 7.  The call to `defpackage` defines the package `project-x`.
-For more on packages, see [section 24.1](chapter24#section_24.1).
+For more on packages, see [section 24.1](chapter24.md#section_24.1).
 
 8.  The final form prints instructions on how to load and run the system.
 

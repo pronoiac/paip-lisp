@@ -115,7 +115,7 @@ Each symbol/arity is compiled into a separate Lisp function by `compile-predicat
 | `bind-new-variables`        | Extend bindings to include any unbound variables.          |
 | `ignore`                    | Do nothing&mdash;ignore the arguments.                     |
 |                             | **Previously Defined Functions**                           |
-| `unify!`                    | Destructive unification (see [section 11.6](chapter11#section_11.6))                 |
+| `unify!`                    | Destructive unification (see [section 11.6](chapter11.md#section_11.6))                 |
 | `undo-bindings!`            | Use the trail to backtrack, undoing bindings.              |
 | `binding-val`               | Pick out the value part of a var/val binding.              |
 | `symbol`                    | Create or find an interned symbol.                         |

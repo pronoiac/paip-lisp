@@ -790,7 +790,7 @@ Just as it is clearer to write `(a+b)*(c+d)` rather than to invent variable name
 
 Second, and more importantly, lambda expressions make it possible to create new functions at run time.
 This is a powerful technique that is not possible in most programming languages.
-These run-time functions, known as *closures,* will be covered in [section 3.16](chapter3#section_3.16).
+These run-time functions, known as *closures,* will be covered in [section 3.16](chapter3.md#section_3.16).
 
 ## 1.8 Other Data Types
 <a id="section_1.8"></a>

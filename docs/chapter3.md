@@ -2482,7 +2482,7 @@ or, with an ANSI-compliant Common Lisp, you can specify a `:` key
 ----------------------
 
 <a id="fn03-1"></a><sup>[1](#tfn03-1)</sup>
-Association lists are covered in [section 3.6](chapter3#section_3.6).
+Association lists are covered in [section 3.6](chapter3.md#section_3.6).
 
 <a id="fn03-2"></a><sup>[2](#tfn03-2)</sup>
 In mathematics, a function must associate a unique output value with each input value.

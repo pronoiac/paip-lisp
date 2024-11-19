@@ -179,7 +179,7 @@ It turns out that `sublis` is most appropriate because it is the only one that a
 For each one of the pairs, the `car` is replaced by the `cdr`.
 In other words, we would form each pair with something like `(cons old new)`.
 (Such a list of pairs is known as an *association list*, or *a-list,* because it associates keys with values.
-See [section 3.6](chapter3#section_3.6).)
+See [section 3.6](chapter3.md#section_3.6).)
 In terms of the example above, we would use:
 
 ```lisp
@@ -328,7 +328,7 @@ The latter means that the match succeeded, but there were no bindings to return.
 Also, remember that `(?X 2 + 2)` means the same as `(?X . (2 + 2))`.
 
 A more powerful implementation of `pat-match` is given in [chapter 6](chapter6.md).
-Yet another implementation is given in [section 10.4](chapter10#section_10.4).
+Yet another implementation is given in [section 10.4](chapter10.md#section_10.4).
 It is more efficient but more cumbersome to use.
 
 ## 5.3 Segment Pattern Matching
@@ -782,7 +782,7 @@ Finally, wrap the string in parentheses, and read it back in as a list:
 (defun punctuation-p (char) (find char ".,;:'!?#-()\\\""))
 ```
 
-This could also be done by altering the readtable, as in [section 23.5](chapter23#section_23.5), page 821.
+This could also be done by altering the readtable, as in [section 23.5](chapter23.md#section_23.5), page 821.
 
 ### Answer 5.6
 

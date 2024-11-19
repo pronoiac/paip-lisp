@@ -511,7 +511,7 @@ For facts, the body will be empty.
 | `fail`                    | An indication that unification has failed.                  |
 | `no-bindings`             | A successful unification with no variables.                 |
 |                           | **Previously Defined Functions**                            |
-| `unify`                   | Return bindings that unify two expressions ([section 11.2](section_11.2)).  |
+| `unify`                   | Return bindings that unify two expressions ([section 11.2](chapter11.md#section_11.2)).  |
 | `unify-variable`          | Unify a variable against an expression.                     |
 | `occurs-check`            | See if a particular variable occurs inside an expression.   |
 | `subst-bindings`          | Substitute bindings into an expression.                     |
